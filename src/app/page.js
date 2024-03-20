@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import POSoftware from '@/pages/posoft';
 import "./globals.css";
+
 import LoginReg from '@/pages/login';
 const App =() => {
   const [token, setToken] = useState(null);
@@ -16,6 +17,7 @@ const App =() => {
     <>
   
       {token ? <POSoftware/> :<LoginReg />}
+      
     </>
   );
 };

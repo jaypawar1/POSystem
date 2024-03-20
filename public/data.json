@@ -1,0 +1,130 @@
+[
+    {
+        "id": 1,
+        "name": "Butter Chicken",
+        "description": "Tender chicken cooked in a creamy tomato sauce.",
+        "price": "225.00",
+        "tags": ["non-vegetarian", "gluten-free", "classic"],
+        "img":"https://images.immediate.co.uk/production/volatile/sites/30/2021/02/butter-chicken-ac2ff98.jpg?quality=90&resize=440,400"
+    },
+    {
+        "id": 2,
+        "name": "Palak Paneer",
+        "description": "Spinach and paneer cheese cooked with spices.",
+        "price": "180.00",
+        "tags": ["vegetarian", "gluten-free", "healthy"],
+        "img":"https://timmitime.com/wp-content/uploads/2020/07/img_2429.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Chole Bhature",
+        "description": "Spicy chickpeas curry served with fried bread.",
+        "price": "150.00",
+        "tags": ["vegetarian", "classic", "spicy"],
+        "img":"https://media.vogue.in/wp-content/uploads/2020/08/chole-bhature-recipe.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Masala Dosa",
+        "description": "Crispy rice batter crepes filled with spicy mashed potatoes.",
+        "price": "120.00",
+        "tags": ["vegetarian", "vegan", "gluten-free"],
+        "img":"https://i.ytimg.com/vi/CCab5oh0ZOc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA730YKb2VkyJ2V4Q-R9cICWRXs9w"
+    },
+    {
+        "id": 5,
+        "name": "Biryani",
+        "description": "Flavorful basmati rice dish with spices and meat or vegetables.",
+        "price": "190.00",
+        "tags": ["non-vegetarian", "vegetarian", "spicy"],
+        "img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg/800px-%22Hyderabadi_Dum_Biryani%22.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Rogan Josh",
+        "description": "Aromatic lamb curry cooked with a blend of spices.",
+        "price": "250.00",
+        "tags": ["non-vegetarian", "gluten-free", "classic"],
+        "img":"https://www.yummytummyaarthi.com/wp-content/uploads/2014/10/1-13.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Pav Bhaji",
+        "description": "Spicy blend of vegetables served with buttered bread rolls.",
+        "price": "140.00",
+        "tags": ["vegetarian", "spicy", "street food"],
+        "img":"https://static.toiimg.com/thumb/74319630.cms?width=1200&height=900"
+    },
+    {
+        "id": 8,
+        "name": "Dal Makhani",
+        "description": "Creamy lentils cooked with butter and spices.",
+        "price": "170",
+        "tags": ["vegetarian", "gluten-free", "classic"],
+        "img":"https://dinedelicious.in/wp-content/uploads/2019/01/Dal-Makhani.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Pani Puri",
+        "description": "Hollow, crispy balls filled with spicy tamarind water and chickpeas.",
+        "price": "25.00",
+        "tags": ["vegetarian", "vegan", "street food"],
+        "img":"https://static01.nyt.com/images/2024/01/17/multimedia/ND-Pani-Puri-mflg/ND-Pani-Puri-mflg-superJumbo.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Rajma Chawal",
+        "description": "Red kidney beans curry served with rice.",
+        "price": "110.00",
+        "tags": ["vegetarian", "gluten-free", "comfort food"],
+        "img":"https://www.secondrecipe.com/wp-content/uploads/2017/08/rajma-chawal-1.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Malai Kofta",
+        "description": "Vegetable and cheese balls in a creamy gravy.",
+        "price": "250.00",
+        "tags": ["vegetarian", "classic"],
+        "img":"https://carameltintedlife.com/wp-content/uploads/2020/11/Malai-Kofta-1-of-1-9-500x375.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Samosa",
+        "description": "Fried pastry filled with spiced potatoes and peas.",
+        "price": "20.00",
+        "tags": ["vegetarian", "vegan", "street food"],
+        "img":"https://paattiskitchen.com/wp-content/uploads/2023/03/kmc_20230226_232129.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Aloo Paratha",
+        "description": "Wheat bread stuffed with spicy potato filling.",
+        "price": "65.00",
+        "tags": ["vegetarian", "vegan", "breakfast"],
+        "img":"https://i.ndtvimg.com/i/2015-11/paratha-625_625x350_61446476643.jpg"
+    },
+    {
+        "id": 14,
+        "name": "Paneer Tikka",
+        "description": "Marinated paneer grilled to perfection.",
+        "price": "150.00",
+        "tags": ["vegetarian", "gluten-free", "appetizer"],
+        "img":"https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Neha_Mathur/Achari_Paneer_Tikka_Recipe_Party_Food_400.jpg"
+    },
+    {
+        "id": 15,
+        "name": "Chicken Tikka Masala",
+        "description": "Grilled chicken chunks in a spicy sauce.",
+        "price": "260.00",
+        "tags": ["non-vegetarian", "gluten-free", "classic"],
+        "img":"https://www.supergoldenbakes.com/wordpress/wp-content/uploads/2023/09/Air_Fryer_Chicken_Tikka_Masala-480x270.jpg"
+    },
+    {
+        "id": 16,
+        "name": "Lamb Vindaloo",
+        "description": "Spicy lamb curry with a tangy vinegar sauce.",
+        "price": "280",
+        "tags": ["non-vegetarian", "gluten-free", "spicy"],
+        "img":"https://myfoodstory.com/wp-content/uploads/2020/02/Slow-Cooker-Lamb-Curry-3.jpg"
+    }
+]
