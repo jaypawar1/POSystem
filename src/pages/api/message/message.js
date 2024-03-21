@@ -50,7 +50,7 @@ async function sendMessage(recipientPhoneNumber, message, accessToken) {
             }
         }, config);
 
-        console.log("Message sent:", response.data);
+        console.log("Message sent:", response.data.error);
     } catch (error) {
         console.error("Error sending message:", error);
     }
