@@ -2,7 +2,7 @@
 import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import * as Components from './components';
+import * as Components from '../components/components';
 
 function LoginReg() {
     const [signIn, toggle] = useState(false);

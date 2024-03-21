@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
+import '../app/globals.css'
 
 const Menu = () => {
     const [dishes, setDishes] = useState([]);
