@@ -39,7 +39,7 @@ async function sendMessage(recipientPhoneNumber, message, accessToken) {
             }
         };
 
-        const response = await axios.post('https://graph.facebook.com/v18.0/me/messages', {
+        const response = await axios.post('https://graph.facebook.com/v18.0/101529309513661/messages', {
             messaging_type: 'MESSAGE_TAG',
             recipient: {
                 phone_number: recipientPhoneNumber
