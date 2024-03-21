@@ -26,6 +26,7 @@ const Menu = () => {
     const addToCart = (id) => {
         const existingItem = cart.find(item => item.id === id);
         if (existingItem) {
+            increaseQuantity(id)
             return;
         } else {
             const dish = dishes.find(dish => dish.id === id);

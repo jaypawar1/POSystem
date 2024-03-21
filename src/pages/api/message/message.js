@@ -31,7 +31,7 @@ export default async function handler(req, res) {
 // Function to send message using Facebook Messenger API
 async function sendMessage(recipientPhoneNumber, message) {
     try {
-        const response = await axios.post('https://graph.facebook.com/v18.0/me/messages?access_token=YOUR_ACCESS_TOKEN', {
+        const response = await axios.post('https://graph.facebook.com/v18.0/me/messages?access_token=EAAIqSsKeP0QBOx6KtD1xzZBAghkvVvbsZC297LcmEWI22ffUK3mRUPaP5ItCkQZBmBr4KvCyM4p8Bdyd20Me91tBVhcWDJgyjCWR0qXdXmkCLFKol8KxuvIZAIS0R3ZBUtwJjZBue7HzU0NHm5z6AYxsTG3GKhLSRx83q5uwLdHofkO0ZCo7qw031YfUZCPwQRTeSAXTG81URLoBo3HE7RsZD', {
             messaging_type: 'MESSAGE_TAG',
             recipient: {
                 phone_number: recipientPhoneNumber
