@@ -18,7 +18,10 @@ export default async function handler(req, res) {
         // Extract message body from the request
         const messageBody = req.body.entry[0].changes[0].value.messages[0].text.body;
         console.log("Received message: " + messageBody);
-        const table=data.table;
+        const decryptedMessageBody = cryptr.decrypt(messageBody);
+
+        // Access table property after decryption
+        const table = JSON.parse(decryptedMessageBody).table;
         const contact = req.body.entry[0].changes[0].value.contacts[0];
         const contactName = contact.profile.name;
         const contactNumber = contact.wa_id;
@@ -27,10 +30,8 @@ export default async function handler(req, res) {
             cli.push({name:contactName,phone:contactNumber});
             await cli.save()
         }
-        const data=cryptr.encrypt(messageBody);
         const accessToken = "EAAIqSsKeP0QBOx6KtD1xzZBAghkvVvbsZC297LcmEWI22ffUK3mRUPaP5ItCkQZBmBr4KvCyM4p8Bdyd20Me91tBVhcWDJgyjCWR0qXdXmkCLFKol8KxuvIZAIS0R3ZBUtwJjZBue7HzU0NHm5z6AYxsTG3GKhLSRx83q5uwLdHofkO0ZCo7qw031YfUZCPwQRTeSAXTG81URLoBo3HE7RsZD";
-        await sendMessage(contactNumber, `Hello ${contactName} from your RestoAI! \n click the link to order \n https://posystem.onrender.com/menu?data=${data}`, accessToken);
-
+        await sendMessage(contactNumber, `Hello ${contactName} from your RestoAI! \n click the link to order \n https://posystem.onrender.com/menu?data=${decryptedMessageBody}`, accessToken);
         res.status(200).end();
     } else {
         res.status(405).json({ message: 'Method Not Allowed' });
