@@ -12,12 +12,22 @@ import { CiSearch } from "react-icons/ci";
 import { AiOutlineScan } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
+import Cryptr from 'cryptr';
+
 
 const Menu = () => {
     const searchParams = useSearchParams()
- 
+    const cryptr = new Cryptr('mysecret');
   const search = searchParams.get('data')
+  if(search){
     console.log(search);
+    
+    const info= cryptr.decrypt(search);
+const data=JSON.parse(info)
+    console.log(data)
+  }
+
+
     const [dishes, setDishes] = useState([]);
     const [cart, setCart] = useState([]);
     const [showReview, setShowReview] = useState(false);
