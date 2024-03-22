@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import '../app/globals.css'
@@ -13,7 +13,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 
 const Menu = () => {
-    const params = useParams()
+    const router = useRouter();
     const { data } = router.query;
     console.log(data)
     const [dishes, setDishes] = useState([]);
