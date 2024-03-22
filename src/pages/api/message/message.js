@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         const messageBody = req.body.entry[0].changes[0].value.messages[0].text.body;
         console.log("Received message: " + messageBody);
         // Access table property after decryption
-        const table = JSON.parse(decryptedMessageBody).table;
+        const table = JSON.parse(messageBody).table;
         const contact = req.body.entry[0].changes[0].value.contacts[0];
         const contactName = contact.profile.name;
         const contactNumber = contact.wa_id;
