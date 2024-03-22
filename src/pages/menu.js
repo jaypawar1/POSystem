@@ -1,16 +1,20 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import '../app/globals.css'
 
 const Menu = () => {
+    const params = useParams()
     const [dishes, setDishes] = useState([]);
     const [cart, setCart] = useState([]);
     const [showReview, setShowReview] = useState(false);
     const [selectedDishId, setSelectedDishId] = useState(null);
 
     useEffect(() => {
+        const info=params.data;
+        console.log(info)
         const fetchData = async () => {
             try {
                 const response = await axios.get('/data.json');
