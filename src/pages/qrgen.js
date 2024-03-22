@@ -1,14 +1,18 @@
 "use client"
 import React, { useState } from 'react';
 import QRCode from 'qrcode';
-
 function WhatsAppMessageSender() {
-    const [message, setMessage] = useState('');
+    const [restorent, setRestorent] = useState('');
+    const [table, setTable] = useState('');
     const [qrCodeUrl, setQRCodeUrl] = useState('');
-
-    const generateQR = () => {
+    const generateQR = async() => {
+        const data={
+            restorent,
+            table
+        }
+        const message= await JSON.stringify(data)
+        console.log(message);
         const qrUrl = `https://wa.me/15550636749?text=${encodeURIComponent(message)}`;
-        
         QRCode.toDataURL(qrUrl, function(err, url) {
             if (err) {
                 console.error(err);
@@ -25,10 +29,17 @@ function WhatsAppMessageSender() {
             <label htmlFor="message">Enter your message:</label>
             <input 
                 type="text" 
-                id="message" 
-                name="message" 
-                value={message} 
-                onChange={(e) => setMessage(e.target.value)} 
+                id="restorent" 
+                name="restorent" 
+                value={restorent} 
+                onChange={(e) => setRestorent(e.target.value)} 
+            />
+            <input 
+                type="number" 
+                id="Table" 
+                name="table" 
+                value={table} 
+                onChange={(e) => setTable(e.target.value)} 
             />
             <button onClick={generateQR}>Generate QR Code</button>
             <br />
