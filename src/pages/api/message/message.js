@@ -1,6 +1,6 @@
 import axios from 'axios';
 import client from '../../../models/client';
-import connectDb from '../../middleware/connectDb';
+import connectDb from '../../../middleware/connectDb';
 import Cryptr from 'cryptr';
 
 const cryptr = new Cryptr('mysecret');
