@@ -14,6 +14,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const Menu = () => {
     const params = useParams()
+    console.log(params.data)
     const [dishes, setDishes] = useState([]);
     const [cart, setCart] = useState([]);
     const [showReview, setShowReview] = useState(false);
