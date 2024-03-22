@@ -14,15 +14,15 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const Menu = () => {
     const params = useParams()
-    console.log(params)
+    const { data } = router.query;
+    console.log(data)
     const [dishes, setDishes] = useState([]);
     const [cart, setCart] = useState([]);
     const [showReview, setShowReview] = useState(false);
     const [selectedDishId, setSelectedDishId] = useState(null);
 
     useEffect(() => {
-        const info=params.data;
-        console.log(info)
+     
         const fetchData = async () => {
             try {
                 const response = await axios.get('/data.json');
