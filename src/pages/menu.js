@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import '../app/globals.css'
