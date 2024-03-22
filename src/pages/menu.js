@@ -4,6 +4,13 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import '../app/globals.css'
+import Veg from "../img/1200px-Indian-vegetarian-mark.svg.png"
+import NonVeg from "../img/245-2459071_non-veg-icon-non-veg-symbol-png.png"
+import Image from 'next/image';
+import { CiSearch } from "react-icons/ci";
+import { AiOutlineScan } from "react-icons/ai";
+import { FaUserCircle } from "react-icons/fa";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Menu = () => {
     const params = useParams()
@@ -64,27 +71,43 @@ const Menu = () => {
     };
 
     return (
-        <div className='bg-[#faf7f0] min-h-screen'>
-            <nav className='flex h-[10vh] items-center justify-between'>
-                <div className='m-3 text-xl font-semibold'>
-                    <p>Table No.6</p>
-                </div>
-                <div className='flex m-2 rounded-xl bg-zinc-600 text-white px-3 py-2 text-lg font-semibold items-center'>
-                <img className='w-8 h-8 rounded-full' src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1710806400&semt=sph" alt="" />
-                    <p>User</p>
+        <div className='bg-white min-h-screen'>
+            <nav className='flex h-[8vh] items-center justify-between'>
+            <h1 className='text-3xl text-center py-3 mx-3 font-extrabold'>Menu</h1>
+                <div className='m-3 flex gap-3 text-3xl font-semibold'>
+                <button><CiSearch /></button>
+                <button><AiOutlineScan/></button>
+                <button><FaUserCircle/></button>
                 </div>
             </nav>
-            <h1 className='text-4xl text-center py-5 font-extrabold'>Menu</h1>
+            <nav className='menunav m-3 overflow-x-scroll my-4 flex items-center'>
+                <ul className='flex text-nowrap gap-3 overflow-x-scroll'>
+                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    active:text-zinc-950' href=".">Specials</a></li>
+                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    active:text-zinc-950' href=".">Food</a></li>
+                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    active:text-zinc-950' href=".">Beverages</a></li>
+                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    active:text-zinc-950' href=".">Desserts</a></li>
+                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    active:text-zinc-950' href=".">Veg Specials</a></li>
+                </ul>
+                <div className='sticky right-0 bg-gradient-to-r from-slate-50/5 to-slate-100 text-2xl'><IoIosArrowForward className='bg-gradient-to-r from-slate-50/5 to-slate-100'/></div>
+            </nav>
             <div className="grid md:grid-cols-4 sm:grid-cols-4 grid-cols-2 gap-4 p-4 ">
                 {dishes.map(dish => (
-                    <div key={dish.id} className="sm:w-[20vw] w-[45vw] rounded-3xl overflow-hidden justify-center items-center shadow-lg  border-gray-900 border-[2px]  m-auto sm:min-h-[45vh] sm:max-h-fit min-h-[28vh] ease-in max-h-fit flex flex-col" onClick={() => handleDishClick(dish.id)}>
+                    <div key={dish.id} className="sm:w-[20vw] w-[45vw] rounded-3xl overflow-hidden justify-center items-center shadow-lg  m-auto sm:min-h-[45vh] sm:max-h-fit min-h-[33vh] ease-in max-h-fit flex flex-col bg-[#ebfffd]" onClick={() => handleDishClick(dish.id)}>
                         <img
-              className="w-[90%] h-40 mt-5 rounded-xl  object-cover"
+              className="w-full h-40 rounded-n-xl  object-cover"
               src={dish.img}
               alt={`Image of ${dish.name}`}
+            
             />
+            
                         <div className="px-6 py-4 flex-grow">
-                            <div className="font-bold sm:text-xl text-lg mb-2 text-gray-900">{dish.name}</div>
+                    
+                            <div className="font-bold sm:text-xl flex items-center text-base mb-2 overflow-hidden text-gray-900"><Image className='w-4 h-4 mx-3' src={dish.veg ? Veg : NonVeg} alt={dish.veg ? "Vegetarian" : "Non-Vegetarian"} />{dish.name}</div>
                             {selectedDishId === dish.id && (
                               <p className="border-gray-300 text-base">
                                   {dish.description}
@@ -92,8 +115,8 @@ const Menu = () => {
                             )}
                         </div>
                         <div className="sm:px-6 px-2 w-full pb-4 flex justify-between items-center">
-                            <span className="inline-block  rounded-full px-3 py-1 sm:text-xl text-sm font-semibold text-gray-900">₹{dish.price}</span>
-                            <button onClick={(e) => { e.stopPropagation(); addToCart(dish.id); }} className="bg-transparent text-gray-900 font-bold py-2 px-4 rounded-3xl border-gray-900 border">Add</button>
+                            <span className="inline-block font-extrabold rounded-full px-3 py-1 sm:text-xl text-sm text-[#20413a]">₹{dish.price}</span>
+                            <button onClick={(e) => { e.stopPropagation(); addToCart(dish.id); }} className="bg-white text-[#b27154] font-semibold uppercase py-1 px-3 rounded-lg border-[#b27154] border-[1px]">Add</button>
                         </div>
                     </div>
                 ))}
