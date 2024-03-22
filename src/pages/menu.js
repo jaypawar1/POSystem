@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import '../app/globals.css'
@@ -179,4 +180,11 @@ const Menu = () => {
     );
 };
 
-export default Menu;
+export default function Searchbar() {
+    return (
+      // You could have a loading skeleton as the `fallback` too
+      <Suspense>
+        <Menu />
+      </Suspense>
+    )
+  }
