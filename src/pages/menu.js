@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation'
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
@@ -13,16 +14,16 @@ import { FaUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 
 const Menu = () => {
-    const router = useRouter();
-    const { data } = router.query;
-    console.log(data)
+    const router = useRouter(); // Using the useRouter hook
+    const { data } = router.query; // Retrieve the 'data' parameter from the URL
+
+    console.log(data);
     const [dishes, setDishes] = useState([]);
     const [cart, setCart] = useState([]);
     const [showReview, setShowReview] = useState(false);
     const [selectedDishId, setSelectedDishId] = useState(null);
 
     useEffect(() => {
-     
         const fetchData = async () => {
             try {
                 const response = await axios.get('/data.json');
