@@ -1,23 +1,23 @@
 "use client"
 import { useState, useEffect } from 'react';
-// import POSoftware from '@/pages/posoft';
+import POSoftware from '@/pages/posoft';
 import "./globals.css";
-import Menu from '@/pages/menu';
-// import LoginReg from '@/pages/login';
+import Footer from '@/components/footer';
+import LoginReg from '@/pages/login';
 const App =() => {
-  // const [token, setToken] = useState(null);
+  const [token, setToken] = useState(null);
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const storedToken = localStorage.getItem('token');
-  //     setToken(storedToken);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem('token');
+      setToken(storedToken);
+    }
+  }, []);
   return (
     <>
   
-      {/* {token ? <POSoftware/> :<LoginReg />} */}
-      <Menu/>
+      {token ? <><POSoftware /><Footer /></> :<LoginReg />}
+     
     </>
   );
 };

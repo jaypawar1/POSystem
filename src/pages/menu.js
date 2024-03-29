@@ -93,28 +93,31 @@ const Menu = () => {
             </nav>
             <div className="grid md:grid-cols-4 sm:grid-cols-4 grid-cols-2 gap-4 p-4 ">
                 {dishes.map(dish => (
-                    <div key={dish.id} className="sm:w-[20vw] w-[45vw] rounded-3xl overflow-hidden justify-center items-center shadow-lg  m-auto sm:min-h-[45vh] sm:max-h-fit min-h-[33vh] ease-in max-h-fit flex flex-col bg-[#ebfffd]" onClick={() => handleDishClick(dish.id)}>
-                        <img
-              className="w-full h-40 rounded-n-xl  object-cover"
-              src={dish.img}
-              alt={`Image of ${dish.name}`}
-            
-            />
-            
-                        <div className="px-6 py-4 flex-grow">
-                    
-                            <div className="font-bold sm:text-xl flex items-center text-base mb-2 overflow-hidden text-gray-900"><Image className='w-4 h-4 mx-3' src={dish.veg ? Veg : NonVeg} alt={dish.veg ? "Vegetarian" : "Non-Vegetarian"} />{dish.name}</div>
-                            {selectedDishId === dish.id && (
-                              <p className="border-gray-300 text-base">
-                                  {dish.description}
-                              </p> 
-                            )}
+                    <div key={dish.id} className="sm:w-[20vw] w-[45vw] rounded-3xl overflow-hidden justify-center items-center shadow-lg  m-auto sm:min-h-[15vh] sm:max-h-fit min-h-[15vh] ease-in max-h-fit flex flex-col bg-[#ebfffd]" onClick={() => handleDishClick(dish.id)}>
+                    <img
+                        className="w-full h-40 rounded-n-xl  object-cover"
+                        src={dish.img}
+                        alt={`Image of ${dish.name}`}
+                    />
+                    <div className="py-4 pb-2 flex-grow justify-start w-full">
+                        <div className="font-bold sm:text-xl w-full flex flex-col justify-start text-base overflow-hidden text-gray-900 text-left">
+                            <div className="flex w-full justify-start items-center text-left">
+                                <Image className='w-4 h-4 ml-3 mr-2' src={dish.veg ? Veg : NonVeg} alt={dish.veg ? "Vegetarian" : "Non-Vegetarian"} />
+                                {dish.name}
+                            </div>
                         </div>
-                        <div className="sm:px-6 px-2 w-full pb-4 flex justify-between items-center">
-                            <span className="inline-block font-extrabold rounded-full px-3 py-1 sm:text-xl text-sm text-[#20413a]">₹{dish.price}</span>
-                            <button onClick={(e) => { e.stopPropagation(); addToCart(dish.id); }} className="bg-white text-[#b27154] font-semibold uppercase py-1 px-3 rounded-lg border-[#b27154] border-[1px]">Add</button>
-                        </div>
+                        {selectedDishId === dish.id && (
+                            <p className="border-gray-300 mx-2 text-base">
+                                {dish.description}
+                            </p>
+                        )}
                     </div>
+                    <div className="sm:px-6 px-2 w-full pb-4 flex justify-between items-center">
+                    <span className="inline-block font-extrabold rounded-full px-3 py-1 sm:text-xl text-base text-[#20413a]">₹{dish.price}</span> 
+                        <button onClick={(e) => { e.stopPropagation(); addToCart(dish.id); }} className="bg-white text-[#b27154] font-semibold uppercase py-0.5 mr-3 px-3 rounded-lg border-[#b27154] border-[1px]">Add</button>
+                    </div>
+                </div>
+                
                 ))}
             </div>
             {cart.length > 0 && (
@@ -123,52 +126,52 @@ const Menu = () => {
                     <div className='flex gap-4 text-sm sm:text-base'>
                     <span className='font-semibold'>Total Price:<span className='text-lg'> ₹{getTotalPrice().toFixed(2)}</span></span>
                   </div>  
-                   <div className='flex sm:gap-4 gap-2'><button onClick={toggleReviewPanel} className="bg-green-500 hover:bg-green-700 text-white text-sm  sm:text-base font-bold py-2 px-4 rounded">
+                   <div className='flex sm:gap-4 gap-2'><button onClick={toggleReviewPanel} className="bg-[#8a6240] hover:bg-[#4d2d18] text-white text-xs  sm:text-base font-bold h-12 w-28 px-0.5 rounded">
                         Review Items
                     </button>
-                    <button className="bg-blue-500 text-sm hover:bg-blue-700  sm:text-base text-white font-bold py-2 px-1 rounded">
-                        Checkout
+                    <button className="bg-[#8a6240] text-xs hover:bg-blue-700  sm:text-base text-white font-bold px-0.5 rounded h-12 w-28">
+                        Place order
                     </button></div> 
                 </div>
                 </div>
             )}
 
 {showReview && (
-    <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center h-screen">
-        <div className="bg-[#faf7f0] p-5 rounded-lg shadow-lg max-w-2xl w-full max-h-[75vh]  overflow-y-scroll">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-900 ">Review Your Cart</h2>
-            <div className="divide-y divide-gray-200">
-                {cart.map((item, index) => (
-                    <div key={index} className="flex justify-between my-3 items-center py-4">
-                        <div className="flex items-center">
-                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-full object-cover mr-4" />
-                            <div>
-                                <p className="text-lg font-medium text-gray-900">{item.name}</p>
-                                <p className="text-gray-600 dark:text-gray-400">₹{item.price}</p>
-                                
-                </div>
-                <p className="mx-4">Qty: {item.quantity}</p>
-                    <button onClick={() => increaseQuantity(item.id)} className="text-lg font-semibold bg-blue-500 text-white px-2 rounded-full">+</button>
+    <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+        <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md w-full animate__animated animate__fadeIn">
+            <div className="px-6 py-8">
+                <h2 className="text-3xl font-bold mb-4 text-gray-900 text-center">Review Your Cart</h2>
+                <div className="divide-y divide-gray-200">
+                    {cart.map((item, index) => (
+                        <div key={index} className="flex justify-between my-3 items-center py-4">
+                            <div className="flex items-center">
+                                <img src={item.img} alt={item.name} className="h-16 w-16 rounded-full object-cover mr-4" />
+                                <div>
+                                    <p className="text-lg font-semibold text-gray-900">{item.name}</p>
+                                    <p className="text-gray-600">₹{item.price}</p>
+                                </div>
+                                <p className="mx-4">{item.quantity}</p>
+                                <button onClick={() => increaseQuantity(item.id)} className="text-base font-semibold bg-blue-500 text-white px-2 py-1.5 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out">+</button>
+                            </div>
+                            <button onClick={() => removeFromCart(item.id)} className="text-red-600 hover:text-red-800 text-2xl dark:hover:text-red-400 font-semibold"><MdDelete/></button>
                         </div>
-                        <button onClick={() => removeFromCart(item.id)} className="text-red-600 hover:text-red-800 text-2xl dark:hover:text-red-400 font-semibold"><MdDelete/></button>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-           
-            <div className="flex h-10vh justify-between items-center bg-inherit mt-6 sticky bottom-8">
-                <span className="text-xl font-semibold text-gray-900 dark:text-white">Total: ₹{getTotalPrice().toFixed(2)}</span>
-                <div className="flex space-x-4 mt-3">
-                    <button onClick={toggleReviewPanel} className="bg-red-500 hover:bg-red-700 text-white  sm:text-base font-bold px-4 rounded t">
-                        Close
-                    </button>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1  sm:text-base text-sm px-4 rounded">
-                        Proceed to Checkout
-                    </button>
+            <div className="bg-gray-100 px-6 py-4 flex justify-between items-center">
+                <span className="text-xl font-semibold text-gray-900">Total: ₹{getTotalPrice().toFixed(2)}</span>
+                <div className="flex space-x-4">
+                    <button onClick={toggleReviewPanel} className="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out">Close</button>
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out">Proceed to Checkout</button>
                 </div>
             </div>
         </div>
     </div>
 )}
+
+
+
+
 
         </div>
     );
