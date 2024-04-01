@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-
+import "../app/globals.css"
 function NavBar() {
   return (
     <div className=' w-[100%] h-[8vh] bg-neutral-800 grid grid-cols-3 items-center px-3'>

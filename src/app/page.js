@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import POSoftware from '@/pages/posoft';
 import "./globals.css";
 import Footer from '@/components/footer';
+
 import LoginReg from '@/pages/login';
 const App =() => {
   const [token, setToken] = useState(null);
@@ -17,9 +18,9 @@ const App =() => {
     <>
   
       {token ? <><POSoftware /><Footer /></> :<LoginReg />}
-     
     </>
   );
-};
+  }
+
 
 export default App;
