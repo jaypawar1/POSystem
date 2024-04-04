@@ -4,12 +4,12 @@
 // import "./globals.css";
 // import Footer from '@/components/footer';
 
-import selectMenu from "@/pages/selectMenu";
+
 
 // import LoginReg from '@/pages/login';
 const App =() => {
   // const [token, setToken] = useState(null);
-  const Menu = selectMenu
+
   // useEffect(() => {
   //   if (typeof window !== 'undefined') {
   //     const storedToken = localStorage.getItem('token');
@@ -18,7 +18,6 @@ const App =() => {
   // }, []);
   return (
     <>
-    <Menu/>
       {/* {token ? <><POSoftware /><Footer /></> :<LoginReg />} */}
     </>
   );

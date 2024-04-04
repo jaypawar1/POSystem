@@ -5,9 +5,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MenuItems from '@/components/menu';
 import Table from "@/components/table";
+import SelectMenu from "@/components/selectMenu";
+import BookTable from "@/components/BookTable";
 import OrderedItems from '@/components/order';
 import NavBar from '@/components/navbar';
 import SearchBar from '@/components/searchBar';
+import {io} from "socket.io-client"
+
+const socket = io();
 export default function POSoftware() {
   const [tables, setTables] = useState([]);
   const [menu, setMenu] = useState([]);
@@ -27,6 +32,10 @@ export default function POSoftware() {
 
   useEffect(() => {
     console.log(isOpenMenu);
+    socket.on('newMenuOrder', (order) => {
+      console.log('Received new menu order:', order);
+      // Process the new order
+    });
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -198,13 +207,11 @@ export default function POSoftware() {
   }
   return (
     <div>
-      <NavBar />
-      <div className="flex">
-        <div className='flex bg-neutral-900 w-2/3 h-[100vh] flex-col'>
-          <SearchBar onchangeTable={changeTable} onSelectTable={selectedTable} handleOpenPopup={handleOpenPopup} handleClosePopup={handleClosePopup} />
-          {!selectedTable ? (<Table tables={tables} onSelectTable={handleTableSelect} />) : (<MenuItems menu={menu} onMenuItemSelect={handleMenuItemSelect} addToOrder={handleAddToOrder} isOpenMenu={handleOpenPopupMenu} />)}
-        </div>
-        <OrderedItems
+
+
+          {!selectedTable ? (<BookTable tables={tables} onSelectTable={handleTableSelect} />) : (<SelectMenu menu={menu} onMenuItemSelect={handleMenuItemSelect} addToOrder={handleAddToOrder} isOpenMenu={handleOpenPopupMenu} />)}
+
+        {/* <OrderedItems
           onBilling={handleBilling}
           tableNumber={selectedTable ? selectedTable.number : null}
           orderedItems={orderedItems}
@@ -213,8 +220,8 @@ export default function POSoftware() {
           onRemoveFromOrder={handleRemoveFromOrder}
           onPrintBill={handlePrintBill}
           onSelectOrderType={handleSelectOrderType}
-        />
-      </div>
+        /> */}
+
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg shadow-md">
@@ -227,7 +234,7 @@ export default function POSoftware() {
           </div>
         </div>
       )}
-      {/* {isOpenMenu && (
+      {isOpenMenu && (
         <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg shadow-md">
             <span className="absolute top-0 right-0 cursor-pointer text-gray-600 hover:text-gray-800" onClick={handleClosePopupMenu}>&times;</span>
@@ -240,7 +247,7 @@ export default function POSoftware() {
             </button>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
