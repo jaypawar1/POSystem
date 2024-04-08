@@ -7,6 +7,11 @@ const userSchema = new mongoose.Schema({
     phone: { type: String, required: true },
     company: { type: String, required: true },
     role: { type: String, required: true },
+    busnessPassword:{type:String},
+    BusnessId:{type:String},
+    project_ids:[
+        {type:String},
+    ],
     createdAt: { type: Date, default: Date.now },
     validity: { type: Date, default: Date.now },
     status: { type: String, default: "Active" },
