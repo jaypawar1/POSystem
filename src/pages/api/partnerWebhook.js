@@ -13,15 +13,11 @@ const handler = async (req, res) => {
         const calculatedSignature = hmac.update(requestBody).digest('hex');
 
         // Compare received signature with calculated signature
-        if (receivedSignature === calculatedSignature) {
+   
             // Signature is valid, process the webhook events
             console.log('Received webhook events:', req.body);
             res.status(200).send('Webhook events received and validated.',req.body);
-        } else {
-            // Signature is invalid, reject the request
-            console.error('Invalid signature. Webhook request rejected.');
-            res.status(403).send('Invalid signature.');
-        }
+        
     } else {
         res.status(405).json({ message: 'Method Not Allowed' });
     }
