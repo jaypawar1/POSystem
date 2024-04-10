@@ -1,9 +1,6 @@
 import axios from 'axios';
-import client from '../../../models/client';
-import connectDb from '../../../middleware/connectDb';
-import Cryptr from 'cryptr';
-
-const cryptr = new Cryptr('mysecret');
+import crypto from 'crypto';
+import connectDb from '../../middleware/connectDb';
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
