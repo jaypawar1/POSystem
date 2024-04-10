@@ -16,7 +16,8 @@ const handler = async (req, res) => {
    
             // Signature is valid, process the webhook events
             console.log('Received webhook events:', req.body);
-            res.status(200).send('Webhook events received and validated.',req.body);
+            const data=req.body;
+            res.status(200).send(data);
         
     } else {
         res.status(405).json({ message: 'Method Not Allowed' });
