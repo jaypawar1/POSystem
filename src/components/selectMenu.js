@@ -6,7 +6,7 @@ import { SlUser } from "react-icons/sl";
 import { HiUserGroup } from "react-icons/hi2";
 import { PiNotePencilBold } from "react-icons/pi";
 import { BiDish } from "react-icons/bi";
- const selectMenu = () => {
+ const SelectMenu = () => {
 
     const [selectedTab, setSelectedTab] = useState(1);
     const [dishes, setDishes] = useState([]);
@@ -101,7 +101,7 @@ import { BiDish } from "react-icons/bi";
             <div className='w-[40vw] bg-gray-200 '> 
             <div className='flex flex-wrap h-fit'>
             {dishes.map(dish=>(
-                <div className={dish.veg?" border-l-4 flex justify-center py-3 px-3 m-2 bg-white border-green-500 h-20":"border-l-4 bg-white border-red-500 py-3 px-3 flex justify-center h-20 m-2"}><a className='p-4' href=".">{dish.name}</a></div>
+                <div key={dish.id} className={dish.veg?" border-l-4 flex justify-center py-3 px-3 m-2 bg-white border-green-500 h-20":"border-l-4 bg-white border-red-500 py-3 px-3 flex justify-center h-20 m-2"}><a className='p-4' href=".">{dish.name}</a></div>
             ))}
             </div>
             </div>
@@ -207,4 +207,4 @@ import { BiDish } from "react-icons/bi";
         </div>
     )
 }
-export default selectMenu
+export default SelectMenu
