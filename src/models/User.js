@@ -7,10 +7,16 @@ const userSchema = new mongoose.Schema({
     phone: { type: String, required: true },
     company: { type: String, required: true },
     role: { type: String, required: true },
-    busnessPassword:{type:String},
-    BusnessId:{type:String},
-    project_ids:[
-        {type:String},
+    busnessPassword: { type: String },
+    BusnessId: { type: String },
+    project_ids: [{
+        projectId: { type: String },
+        templates:[{
+            templates_id: {type : String},  
+            templates_Tag:{type:String}
+        }//array of template
+        ]
+    }
     ],
     createdAt: { type: Date, default: Date.now },
     validity: { type: Date, default: Date.now },
@@ -22,20 +28,20 @@ const userSchema = new mongoose.Schema({
             number: { type: Number },
         },
         Orders: [{
-            catagory:{type:String , required:true},
-            MenuItem: { type: String , required:true},
+            catagory: { type: String, required: true },
+            MenuItem: { type: String, required: true },
             quantity: { type: Number, default: 1 },
             amount: { type: Number, required: true }
         },
         ],
         orderAs: { type: String, default: "Dine-in" },
-        orderBy: { type: String , default:"POS"},
+        orderBy: { type: String, default: "POS" },
         status: { type: String, default: "KOT" },
         createdAt: { type: Date, default: Date.now },
         payment: { type: String, default: "Pending" },
-        paidBy:{type:String, default:"Cash"},
+        paidBy: { type: String, default: "Cash" },
         totalAmount: { type: Number, required: true },
-        discount: { type: Number},
+        discount: { type: Number },
         tax: { type: Number, required: true },
         grandTotal: { type: Number, required: true },
     }],
@@ -45,9 +51,9 @@ const userSchema = new mongoose.Schema({
             menuItem: { type: String, required: true },
             desc: { type: String },
             image: { data: Buffer, contentType: String },
-            tax:{
-                SGST :{ type: Number },
-                CGST :{ type: Number }
+            tax: {
+                SGST: { type: Number },
+                CGST: { type: Number }
             },
             price: { type: Number, required: true },
         }]

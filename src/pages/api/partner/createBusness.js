@@ -19,21 +19,17 @@ const handler = async (req, res) => {
             }
             const { formData } = req.body;
             console.log("formdata", formData);
-           
 
-            const apiUrl = ' https://stoplight.io/mocks/aisensy/partner-api/54889159/partner/65e9fcb8abfa6918944c960e/business';
+            const apiUrl = 'https://apis.aisensy.com/partner-apis/v1/partner/65e9fcb8abfa6918944c960e/business';
             const headers = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'X-AiSensy-Partner-API-Key': '6ccf3e5a38a31d7f40be9_65e9fcb8abfa6918944c960e'
             };
             const response = await axios.post(apiUrl, formData, { headers });
-          const ref= await User.findByIdAndUpdate(userId,{BusnessId :response.data.business_id,busnessPassword:formData.password}, { new: true }) 
-            
-            // await user.fsave();
+            const ref = await User.findByIdAndUpdate(userId, { BusnessId: response.data.business_id, busnessPassword: formData.password }, { new: true })
             ref;
-                res.status(201).json({ data: response.data.business_id })
-
+            res.status(201).json({ data: response.data.business_id })
         } catch (error) {
             console.error('Error getting user:', error);
             res.status(500).json({ message: 'Internal server error' });

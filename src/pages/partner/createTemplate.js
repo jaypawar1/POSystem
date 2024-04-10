@@ -1,128 +1,143 @@
-"use client"
 import { useState } from 'react';
-import { Router, useRouter } from 'next/router';
-import axios from 'axios'; // Import Axios
-import '../../app/globals.css'
+import axios from 'axios';
+import "../../app/globals.css"
 const TemplateForm = () => {
-    const router = useRouter();
-    const { id } = router.query;
     const [formData, setFormData] = useState({
-        name: '',
-        category: '',
-        language: '',
-        headerFormat: '',
-        bodyText: '',
-        footerText: '',
-        buttonType: '',
-        buttonText: '',
-        buttonUrl: '',
-        buttonNumber: ''
+        name: 'mytemplate',
+        category: 'MARKETING',
+        language: 'en',
+        components: [
+            {
+                type: 'HEADER',
+                format: 'VIDEO',
+                example: {
+                    header_handle: [
+                        'https://aisensy-project-media-library-stg.s3.ap-south-1.amazonaws.com/VIDEO/6245d025fcb7966c46294618/9346765_6467606fileexampleMP448015MG.mp4'
+                    ]
+                }
+            },
+            {
+                type: 'BODY',
+                text: 'Hello {{1}}, this is your template tutorial. This part right here is the body of the message that will be sent to the user.',
+                example: {
+                    body_text: [
+                        ['Romit']
+                    ]
+                }
+            },
+            {
+                type: 'BUTTONS',
+                buttons: [
+                    {
+                        type: 'PHONE_NUMBER',
+                        text: 'Call Us',
+                        phone_number: '917089379345'
+                    },
+                    {
+                        type: 'URL',
+                        text: 'Visit',
+                        url: 'https://aisensy.com/{{1}}',
+                        example: [
+                            'https://aisensy.com/events'
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 'FOOTER',
+                text: 'This portion is the footer. Use it as required'
+            }
+        ]
     });
-
-   
-    
+    const generateToken = (username, password, projectId) => {
+        const tokenString = `${username}:${password}:${projectId}`;
+        const encodedToken = Buffer.from(tokenString).toString('base64');
+        return encodedToken;
+    };
+    console.log(generateToken("jay.pawar@pixelmize.com","Pranav@56","660e99388585cf0bfd6c7e6a"))
     const createTemplate = async () => {
         try {
-            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhc3Npc3RhbnRJZCI6IjY2MGU5OTM4ODU4NWNmMGJmZDZjN2U2YSIsImNsaWVudElkIjoiNjYwZTk5Mzg4NTg1Y2YwYmZkNmM3ZTYwIiwiaWF0IjoxNzEyMzc5OTk0fQ.S6ciDngBw9auqfScCPThZot2sV1eek2Iqu81p5A0zts';
+           
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhc3Npc3RhbnRJZCI6IjY2MGU5OTM4ODU4NWNmMGJmZDZjN2U2YSIsImNsaWVudElkIjoiNjYwZTk5Mzg4NTg1Y2YwYmZkNmM3ZTYwIiwiaWF0IjoxNzEyNjMyNTk3fQ.RzXQMR0c_Od2CSQ80-Wr4lRZXEujLDcSF4wqC7pqg4M";
+            console.log(token)
             const response = await axios.post(
-                'https://stoplight.io/mocks/aisensy/direct-api/120362288/wa_template',
+                'https://backend.aisensy.com/direct-apis/t1/wa_template',
                 formData,
                 {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}` // Include Authorization header with Bearer token
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             );
-            console.log(response.data); // Handle success response
+            console.log(response.data);
+            // Handle success response
         } catch (error) {
             console.error(error); // Handle error
         }
     };
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+
+    const handleChange = (e, componentIndex, field) => {
+        const { value } = e.target;
+        setFormData(prevFormData => {
+            const updatedComponents = [...prevFormData.components];
+            updatedComponents[componentIndex][field] = value;
+            return { ...prevFormData, components: updatedComponents };
+        });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await createTemplate(formData); // Call createTemplate function to make the Axios request
+        await createTemplate();
     };
 
-    const languages = [
-        'English',
-        'Spanish',
-        'French',
-        'German',
-        'Chinese',
-        'Arabic',
-        'Hindi'
-        // Add more languages as needed
-    ];
     return (
         <div className="max-w-md mx-auto">
             <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label htmlFor="name" className="block">Template Name:</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="w-full border rounded-md px-4 py-2" />
-                </div>
-
-                <div>
-                    <label htmlFor="category" className="block">Category:</label>
-                    <select id="category" name="category" value={formData.category} onChange={handleChange} className="w-full border rounded-md px-4 py-2">
-                        <option value="marketing">Marketing</option>
-                        <option value="authentication">Authentication</option>
-                        <option value="utility">Utility</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label htmlFor="language" className="block">Language:</label>
-                    <select id="language" name="language" value={formData.language} onChange={handleChange} className="w-full border rounded-md px-4 py-2">
-                        <option value="">Select language</option>
-                        {languages.map((language, index) => (
-                            <option key={index} value={language}>{language}</option>
-                        ))}
-                    </select>
-                </div>
-
-                <div>
-                    <label htmlFor="headerFormat" className="block">headerFormat:</label>
-                    <select id="headerFormat" name="headerFormat" value={formData.headerFormat} onChange={handleChange} className="w-full border rounded-md px-4 py-2">
-                        <option value="VIDEO">VIDEO</option>
-                        <option value="TEXT">TEXT</option>
-                        <option value="IMAGE">IMAGE</option>
-                        <option value="FILE">FILE</option>
-                        <option value="LOCATION">LOCATION</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label htmlFor="bodyText" className="block">bodyText:</label>
-                    <input type="text" id="bodyText" name="bodyText" value={formData.bodyText} onChange={handleChange} className="w-full border rounded-md px-4 py-2" />
-                </div>
-                <div>
-                    <label htmlFor="footerText" className="block">footerText:</label>
-                    <input type="footerText" id="footerText" name="footerText" value={formData.footerText} onChange={handleChange} className="w-full border rounded-md px-4 py-2" />
-                </div>
-                <div>
-                    <label className="block">Radio Options:</label>
-                    <div>
-                        <input type="radio" id="none" name="radioOption" value="none" checked={formData.radioOption === 'none'} onChange={handleChange} />
-                        <label htmlFor="none" className="ml-2">None</label>
+                {formData.components.map((component, index) => (
+                    <div key={index}>
+                        <h2>{component.type}</h2>
+                        {component.type === 'BUTTONS' ? (
+                            <div>
+                                {component.buttons.map((button, buttonIndex) => (
+                                    <div key={buttonIndex}>
+                                        {Object.entries(button).map(([key, value], i) => (
+                                            <div key={i}>
+                                                <label htmlFor={`${component.type}-${key}-${buttonIndex}`} className="block">{key}:</label>
+                                                <input
+                                                    type="text"
+                                                    id={`${component.type}-${key}-${buttonIndex}`}
+                                                    name={key}
+                                                    value={value}
+                                                    onChange={(e) => handleChange(e, index, `buttons.${buttonIndex}.${key}`)}
+                                                    className="w-full border rounded-md px-4 py-2"
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            Object.entries(component).map(([key, value], i) => (
+                                key !== 'type' &&
+                                <div key={i}>
+                                    <label htmlFor={`${component.type}-${key}`} className="block">{key}:</label>
+                                    <input
+                                        type="text"
+                                        id={`${component.type}-${key}`}
+                                        name={key}
+                                        value={value}
+                                        onChange={(e) => handleChange(e, index, key)}
+                                        className="w-full border rounded-md px-4 py-2"
+                                    />
+                                </div>
+                            ))
+                        )}
                     </div>
-                    <div>
-                        <input type="radio" id="QUICK_REPLY" name="radioOption" value="QUICK_REPLY" checked={formData.radioOption === 'QUICK_REPLY'} onChange={handleChange} />
-                        <label htmlFor="QUICK_REPLY" className="ml-2">QUICK_REPLY</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="URL" name="radioOption" value="URL" checked={formData.radioOption === 'URL'} onChange={handleChange} />
-                        <label htmlFor="URL" className="ml-2">URL</label>
-                    </div>
-                </div>
+                ))}
 
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onClick={() => createTemplate(formData)}>Create Template</button>
+                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Create Template</button>
             </form>
         </div>
     );

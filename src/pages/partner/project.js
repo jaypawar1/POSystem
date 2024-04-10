@@ -6,16 +6,12 @@ import '../../app/globals.css'
 const ProjectsPage = () => {
     const [projects, setProjects] = useState([]);
     const router = useRouter();
-    const { id } = router.query;
-    const getRandomColor = () => {
-        const colors = ['bg-red-200', 'bg-blue-200', 'bg-green-200', 'bg-yellow-200', 'bg-purple-200'];
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-    };
     useEffect(() => {
+        const { id } = router.query;
+        console.log(id)
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://stoplight.io/mocks/aisensy/partner-api/54889159/partner/65e9fcb8abfa6918944c960e/business/${id}/project`, {
+                const response = await axios.get(`https://apis.aisensy.com/partner-apis/v1/partner/65e9fcb8abfa6918944c960e/business/660e99388585cf0bfd6c7e60/project`, {
                     headers: {
                         'Accept': 'application/json',
                         'X-AiSensy-Partner-API-Key': '6ccf3e5a38a31d7f40be9_65e9fcb8abfa6918944c960e'
@@ -30,6 +26,11 @@ const ProjectsPage = () => {
 
         fetchData();
     }, []);
+    const getRandomColor = () => {
+        const colors = ['bg-red-200', 'bg-blue-200', 'bg-green-200', 'bg-yellow-200', 'bg-purple-200'];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+    };
     return (
         <div className="container mx-auto py-8">
         <h1 className="text-3xl font-semibold mb-4">Projects</h1>

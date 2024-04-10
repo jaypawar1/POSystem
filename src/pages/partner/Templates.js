@@ -3,13 +3,13 @@ import axios from 'axios';
 import '../../app/globals.css'
 const TemplateList = () => {
     const [templates, setTemplates] = useState([]);
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhc3Npc3RhbnRJZCI6IjY2MGU5OTM4ODU4NWNmMGJmZDZjN2U2YSIsImNsaWVudElkIjoiNjYwZTk5Mzg4NTg1Y2YwYmZkNmM3ZTYwIiwiaWF0IjoxNzEyMzE2MTk4fQ.HwkXATwc-9C6ggtL-X2krrEIX1z0R8fs5MNBroD1wyw';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhc3Npc3RhbnRJZCI6IjY2MGU5OTM4ODU4NWNmMGJmZDZjN2U2YSIsImNsaWVudElkIjoiNjYwZTk5Mzg4NTg1Y2YwYmZkNmM3ZTYwIiwiaWF0IjoxNzEyNjMyNTk3fQ.RzXQMR0c_Od2CSQ80-Wr4lRZXEujLDcSF4wqC7pqg4M';
 
     useEffect(() => {
         const fetchTemplates = async () => {
             try {
                 const response = await axios.get(
-                    'https://stoplight.io/mocks/aisensy/direct-api/120362288/get-templates',
+                    'https://backend.aisensy.com/direct-apis/t1/get-templates',
                     {
                         headers: {
                             'Accept': 'application/json',

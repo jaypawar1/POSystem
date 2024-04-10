@@ -21,7 +21,7 @@ const handler = async (req, res) => {
                 return res.status(401).json({ message: 'Invalid email or password' });
             }
             const token = jwt.sign({ userId: user._id }, "hello", {
-                expiresIn: '24h'
+                expiresIn: '98h'
             });
             res.status(200).json({ token });
         } catch (error) {
