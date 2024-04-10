@@ -16,7 +16,7 @@ export default async (req, res) => {
       const generatedSignature = await createHash(JSON.stringify(notification), sharedSecret);
       
       if (receivedSignature === generatedSignature) {
-        res.status(200).send("Signature Matched");
+        res.status(200).send("Signature Matched",req.body);
       } else {
         res.status(500).send("Signature didn't Match");
       }
