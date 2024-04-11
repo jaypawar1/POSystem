@@ -32,7 +32,14 @@ const Menu = () => {
     const [cart, setCart] = useState([]);
     const [showReview, setShowReview] = useState(false);
     const [selectedDishId, setSelectedDishId] = useState(null);
+    const [placeOrder,setOrder] = useState(false)
 
+
+    function order(){
+        return(
+            setOrder(!placeOrder)
+        )
+    }
     useEffect(() => {
 
         const fetchData = async () => {
@@ -148,7 +155,7 @@ const Menu = () => {
                         <div className='flex sm:gap-4 gap-2'><button onClick={toggleReviewPanel} className="bg-[#8a6240] hover:bg-[#4d2d18] text-white text-xs  sm:text-base font-bold h-12 w-28 px-0.5 rounded">
                             Review Items
                         </button>
-                            <button className="bg-[#8a6240] text-xs hover:bg-blue-700  sm:text-base text-white font-bold px-0.5 rounded h-12 w-28">
+                            <button onClick={order} className="bg-[#8a6240] text-xs hover:bg-blue-700  sm:text-base text-white font-bold px-0.5 rounded h-12 w-28">
                                 Place order
                             </button></div>
                     </div>
@@ -188,17 +195,44 @@ const Menu = () => {
                 </div>
             )}
 
-
-
-
-
-        </div>
+{placeOrder && (
+                <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+                    <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md w-full animate__animated animate__fadeIn">
+                        <div className="px-6 py-8">
+                            <h2 className="text-3xl font-bold mb-4 text-gray-900 text-center">Review Your Cart</h2>
+                            <div className="divide-y divide-gray-200">
+                                {cart.map((item, index) => (
+                                    <div key={index} className="flex justify-between my-3 items-center py-4">
+                                        <div className="flex items-center">
+                                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-full object-cover mr-4" />
+                                            <div>
+                                                <p className="text-lg font-semibold text-gray-900">{item.name}</p>
+                                                <p className="text-gray-600">₹{item.price}</p>
+                                            </div>
+                                            <p className="mx-4">{item.quantity}</p>
+                                            <button onClick={() => increaseQuantity(item.id)} className="text-base font-semibold bg-blue-500 text-white px-2 py-1.5 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out">+</button>
+                                        </div>
+                                        <button onClick={() => removeFromCart(item.id)} className="text-red-600 hover:text-red-800 text-2xl dark:hover:text-red-400 font-semibold"><MdDelete /></button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="bg-gray-100 px-6 py-4 flex justify-between items-center">
+                            <span className="text-xl font-semibold text-gray-900">Total: ₹{getTotalPrice().toFixed(2)}</span>
+                            <div className="flex space-x-4">
+                                <button onClick={opener} className="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out">Close</button>
+                                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out" onClick={sendMenuOrder(cart)}>Proceed to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+  </div>
     );
 };
 
 export default function Searchbar() {
     return (
-        // You could have a loading skeleton as the `fallback` too
         <Suspense>
             <Menu />
         </Suspense>

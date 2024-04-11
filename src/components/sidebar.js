@@ -2,6 +2,7 @@ import { MdCampaign } from "react-icons/md";
 import { FaHandshake } from "react-icons/fa";
 import { MdOutlineTextSnippet } from "react-icons/md";
 import { VscFeedback } from "react-icons/vsc";
+import "../app/globals.css"
 
 export const Sidebar = ()=>{
  

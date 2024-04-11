@@ -8,8 +8,8 @@ const TemplateForm = () => {
         language: 'en',
         components: [
             {
-                type: 'HEADER',
-                format: 'VIDEO',
+                type: '',
+                format: '',
                 example: {
                     header_handle: [
                         'https://aisensy-project-media-library-stg.s3.ap-south-1.amazonaws.com/VIDEO/6245d025fcb7966c46294618/9346765_6467606fileexampleMP448015MG.mp4'
@@ -17,8 +17,8 @@ const TemplateForm = () => {
                 }
             },
             {
-                type: 'BODY',
-                text: 'Hello {{1}}, this is your template tutorial. This part right here is the body of the message that will be sent to the user.',
+                type: '',
+                text: '',
                 example: {
                     body_text: [
                         ['Romit']
@@ -26,26 +26,26 @@ const TemplateForm = () => {
                 }
             },
             {
-                type: 'BUTTONS',
+                type: '',
                 buttons: [
                     {
-                        type: 'PHONE_NUMBER',
-                        text: 'Call Us',
-                        phone_number: '917089379345'
+                        type: '',
+                        text: '',
+                        phone_number: ''
                     },
                     {
-                        type: 'URL',
-                        text: 'Visit',
-                        url: 'https://aisensy.com/{{1}}',
+                        type: '',
+                        text: '',
+                        url: '',
                         example: [
-                            'https://aisensy.com/events'
+                            ''
                         ]
                     }
                 ]
             },
             {
-                type: 'FOOTER',
-                text: 'This portion is the footer. Use it as required'
+                type: 'Footer',
+                text: ''
             }
         ]
     });
@@ -93,25 +93,26 @@ const TemplateForm = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto">
+        <div className="w-[80vw] h-[85vh] overflow-y-scroll bg-white shadow-lg rounded-lg p-6">
+            <p className='text-3xl font-bold'>Add New</p>
             <form onSubmit={handleSubmit} className="space-y-4">
                 {formData.components.map((component, index) => (
                     <div key={index}>
-                        <h2>{component.type}</h2>
+                        <h2 className="text-lg font-semibold">{component.type}</h2>
                         {component.type === 'BUTTONS' ? (
                             <div>
                                 {component.buttons.map((button, buttonIndex) => (
                                     <div key={buttonIndex}>
                                         {Object.entries(button).map(([key, value], i) => (
-                                            <div key={i}>
-                                                <label htmlFor={`${component.type}-${key}-${buttonIndex}`} className="block">{key}:</label>
+                                            <div key={i} className="mb-4">
+                                                <label htmlFor={`${component.type}-${key}-${buttonIndex}`} className="block text-gray-700">{key}:</label>
                                                 <input
                                                     type="text"
                                                     id={`${component.type}-${key}-${buttonIndex}`}
                                                     name={key}
                                                     value={value}
                                                     onChange={(e) => handleChange(e, index, `buttons.${buttonIndex}.${key}`)}
-                                                    className="w-full border rounded-md px-4 py-2"
+                                                    className="w-full border rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
                                                 />
                                             </div>
                                         ))}
@@ -121,26 +122,27 @@ const TemplateForm = () => {
                         ) : (
                             Object.entries(component).map(([key, value], i) => (
                                 key !== 'type' &&
-                                <div key={i}>
-                                    <label htmlFor={`${component.type}-${key}`} className="block">{key}:</label>
+                                <div key={i} className="mb-4">
+                                    <label htmlFor={`${component.type}-${key}`} className="block text-gray-700">{key}:</label>
                                     <input
                                         type="text"
                                         id={`${component.type}-${key}`}
                                         name={key}
                                         value={value}
                                         onChange={(e) => handleChange(e, index, key)}
-                                        className="w-full border rounded-md px-4 py-2"
+                                        className="w-full border rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
                                     />
                                 </div>
                             ))
                         )}
                     </div>
                 ))}
-
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Create Template</button>
+    
+                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Create Template</button>
             </form>
         </div>
     );
+    
 };
 
 export default TemplateForm;
