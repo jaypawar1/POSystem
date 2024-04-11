@@ -1,27 +1,30 @@
-import axios from 'axios';
-import crypto from 'crypto';
-import connectDb from '../../middleware/connectDb';
+import { createHmac } from 'crypto';
 
-const handler = async (req, res) => {
-    if (req.method === 'POST') {
-        const sharedSecret = '5c96789d5ec4e8ec8f834'; // Replace with your actual shared secret
-        const receivedSignature = req.headers['x-aisensy-signature'];
-        const requestBody = JSON.stringify(req.body);
+const createHash = async (text, secret) => {
+  const hash = createHmac("sha256", secret).update(text).digest("hex");
+  return hash;
+};
 
-        // Calculate signature from the request body using the shared secret
-        const hmac = crypto.createHmac('sha256', sharedSecret);
-        const calculatedSignature = hmac.update(requestBody).digest('hex');
+export default async (req, res) => {
+  if (req.method === 'POST') {
+    try {
+      const notification = req.body;
+      const receivedSignature = req.headers["x-aisensy-signature"];
+      const sharedSecret = "a59928835e7e128ad692d"; // Replace with your actual webhook shared secret
 
-        // Compare received signature with calculated signature
-   
-            // Signature is valid, process the webhook events
-            console.log('Received webhook events:', req.body);
-            const data=req.body;
-            res.status(200).send(data);
-        
-    } else {
-        res.status(405).json({ message: 'Method Not Allowed' });
+      // Provide the notification data as it is
+      const generatedSignature = await createHash(JSON.stringify(notification), sharedSecret);
+      console.log(req.body)
+      if (receivedSignature === generatedSignature) {
+        res.status(200).send("Signature Matched",req.body);
+      } else {
+        res.status(500).send("Signature didn't Match");
+      }
+    } catch(err) {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
     }
-}
-
-export default connectDb(handler);
+  } else {
+    res.status(405).send("Method Not Allowed");
+  }
+};
