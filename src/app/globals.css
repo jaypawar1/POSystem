@@ -6,3 +6,31 @@
 nav.menunav::-webkit-scrollbar{
     display: none
 }
+.design{
+    background: url("https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg");
+    background-position: center;
+    background-size: cover;
+}
+.chat-bubble {
+    max-width: 70%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #e0e0e0;
+    word-wrap: break-word;
+}
+
+.user {
+    align-self: flex-end;
+    background-color: #009945;
+    color: #e1ffef;
+}
+
+.bot {
+    align-self: flex-start;
+    background-color: #e1ffef;
+    color: #009945;
+}
+.hidescroll::-webkit-scrollbar{
+    display: none;
+}
