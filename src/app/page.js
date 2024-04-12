@@ -4,6 +4,8 @@
 // import "./globals.css";
 // import Footer from '@/components/footer';
 
+import { Sidebar } from "@/components/sidebar";
+
 
 
 // import LoginReg from '@/pages/login';
@@ -18,7 +20,9 @@ const App =() => {
   // }, []);
   return (
     <>
+    <Sidebar/>
       {/* {token ? <><POSoftware /><Footer /></> :<LoginReg />} */}
+      
     </>
   );
   }
