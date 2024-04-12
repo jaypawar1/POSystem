@@ -2,6 +2,7 @@
 import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import "../app/globals.css"
 import * as Components from '../components/components';
 
 function LoginReg() {
@@ -40,7 +41,7 @@ function LoginReg() {
             console.log(data);
             localStorage.setItem('token', data.token);
             scheduleTokenRemoval();
-            route.push("/posoft", { scroll: false })
+            route.push("/Templates", { scroll: false })
         } catch (error) {
             console.error('Error logging in:', error);
         } finally {
@@ -65,7 +66,7 @@ function LoginReg() {
             }
             console.log(data);
             localStorage.setItem('token', data.token);
-            route.push("/posoft", { scroll: false })
+            route.push("/partner/busnessSignup", { scroll: false })
         } catch (error) {
             console.error('Error registering:', error);
         } finally {
