@@ -9,8 +9,8 @@ export default function handler(req, res) {
       const generatedSignature =  createHmac("sha256", sharedSecret)
                                     .update(JSON.stringify(notification))
                                     .digest("hex");
-      const data = JSON.stringify(res.body)
-      console.log(data);
+      // const data = JSON.stringify(res.body)
+      // console.log(data);
       if (receivedSignature === generatedSignature) {
         res.status(200).send("Signature Matched");
       } else {
