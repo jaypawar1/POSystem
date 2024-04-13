@@ -23,7 +23,11 @@ const handler = async (req, res) => {
             const token = jwt.sign({ userId: user._id }, "hello", {
                 expiresIn: '98h'
             });
-            res.status(200).json({ token });
+            const data={
+                token,
+                user
+            }
+            res.status(200).json({data });
         } catch (error) {
             console.error('Error logging in:', error);
             res.status(500).json({ message: 'Internal server error' });

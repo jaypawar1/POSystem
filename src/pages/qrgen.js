@@ -1,24 +1,34 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
+
 function WhatsAppMessageSender() {
-    const [restorent, setRestorent] = useState('');
+    const [restaurant, setRestaurant] = useState('');
     const [table, setTable] = useState('');
     const [qrCodeUrl, setQRCodeUrl] = useState('');
-    const generateQR = async() => {
-        const data={
-            restorent,
-            table
+    const [user, setUser] = useState('');
+
+    useEffect(async() => {
+        const userFromLocalStorage = localStorage.getItem("user");
+        if (userFromLocalStorage) {
+            const parsedUser =await JSON.parse(userFromLocalStorage);
+            setUser(parsedUser.data);
+         
         }
-        const message= await JSON.stringify(data)
-        console.log(message);
-        const qrUrl = `https://wa.me/15550636749?text=${encodeURIComponent(message)}`;
+    }, []);
+    console.log(user)
+    const generateQR = () => {
+        const data = {
+            restaurant,
+            table,
+        };
+        const message = JSON.stringify(data);
+        const qrUrl = `https://wa.me/91${user.user.phone}?text=${encodeURIComponent(message)}`;
         QRCode.toDataURL(qrUrl, function(err, url) {
             if (err) {
                 console.error(err);
                 return;
             }
-            
             setQRCodeUrl(url);
         });
     };
@@ -26,17 +36,18 @@ function WhatsAppMessageSender() {
     return (
         <div>
             <h1>WhatsApp Message Sender</h1>
-            <label htmlFor="message">Enter your message:</label>
+            <label htmlFor="restaurant">Enter restaurant name:</label>
             <input 
                 type="text" 
-                id="restorent" 
-                name="restorent" 
-                value={restorent} 
-                onChange={(e) => setRestorent(e.target.value)} 
+                id="restaurant" 
+                name="restaurant" 
+                value={restaurant} 
+                onChange={(e) => setRestaurant(e.target.value)} 
             />
+            <label htmlFor="table">Enter table number:</label>
             <input 
                 type="number" 
-                id="Table" 
+                id="table" 
                 name="table" 
                 value={table} 
                 onChange={(e) => setTable(e.target.value)} 

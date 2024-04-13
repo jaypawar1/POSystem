@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import Templates from "@/pages/Templates"; 
 import LoginReg from '@/pages/login';
+import { Sidebar } from '@/components/sidebar';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,7 +42,7 @@ const App = () => {
 
   return (
     <>
-      {isLoggedIn ? <Templates /> : <LoginReg />}
+      {isLoggedIn ? <Sidebar /> : <LoginReg />}
     </>
   );
 };

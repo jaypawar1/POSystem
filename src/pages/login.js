@@ -17,16 +17,8 @@ function LoginReg() {
     const route= useRouter()
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
-            scheduleTokenRemoval();
-        }
     }, []);
 
-    const scheduleTokenRemoval = () => {
-        setTimeout(() => {
-            localStorage.removeItem('token');
-        }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
-    };
     const login = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -39,20 +31,18 @@ function LoginReg() {
             if (data.error) {
                 console.log(data.error);
             }
-            localStorage.setItem('token', data.token);
+            localStorage.setItem('token', data.data.token);
             localStorage.setItem('user', JSON.stringify(data));
-            scheduleTokenRemoval();
-            route.push("/Templates", { scroll: false })
+            await route.push("/Templates", { scroll: false })
+            setLoading(false);
         } catch (error) {
             console.error('Error logging in:', error);
-        } finally {
-            setLoading(false);
-        }
+        } 
     };
 
     const register = async (e) => {
         e.preventDefault();
-        setLoading(true); // Assuming setLoading is a state setter function
+        setLoading(true);
       
         try {
           const loginRes = await axios.post('/api/signup', {
@@ -63,9 +53,8 @@ function LoginReg() {
             password: password
           });
           const data = loginRes.data;
-      
           if (data.error) {
-            console.log(data.error); // You might want to handle this error more gracefully, like showing it to the user
+            console.log(data.error); 
           }
       console.log(data)
           // Assuming the registration was successful, store user data in localStorage
