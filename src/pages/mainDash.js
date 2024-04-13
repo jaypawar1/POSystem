@@ -1,4 +1,4 @@
-import LineChart from "@/components/LineChart";
+
 import { CircularProgress } from "@mui/material";
 
 import Stack from '@mui/material/Stack';
