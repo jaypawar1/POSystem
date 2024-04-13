@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import '../../app/globals.css'
@@ -15,7 +15,6 @@ const BusnesSignup = () => {
         companySize: '',
         password: '', 
     });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -35,12 +34,12 @@ const BusnesSignup = () => {
             { headers: { authorization: token } }
           );
           console.log(response);
-        //   const  res=await axios.post(
-        //     '/api/partner/createProject',
-        //     { business_id:response.data.data, name:"first Project"}, 
-        //     { headers: { authorization: token } } 
-        //   )
-        router.push(`/partner/project/${response.data.data}.js`);
+          const  res=await axios.post(
+            '/api/partner/createProject',
+            { business_id:response.data.data, name:"first Project"}, 
+            { headers: { authorization: token } } 
+          )
+          router.push(`/Templates?id=${response.data.data}`);
 
       }catch(e){
         console.log(e);

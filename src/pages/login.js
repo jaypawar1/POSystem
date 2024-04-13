@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import "../app/globals.css"
 import * as Components from '../components/components';
+import { HiMiniIdentification } from 'react-icons/hi2';
 
 function LoginReg() {
     const [signIn, toggle] = useState(false);
@@ -38,8 +39,8 @@ function LoginReg() {
             if (data.error) {
                 console.log(data.error);
             }
-            console.log(data);
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data));
             scheduleTokenRemoval();
             route.push("/Templates", { scroll: false })
         } catch (error) {
@@ -51,29 +52,36 @@ function LoginReg() {
 
     const register = async (e) => {
         e.preventDefault();
-        setLoading(true);
+        setLoading(true); // Assuming setLoading is a state setter function
+      
         try {
-            const loginRes = await axios.post('/api/signup', {
-                username: name,
-                company: company,
-                phone: phone,
-                email: email,
-                password: password
-            });
-            const data = loginRes.data;
-            if (data.error) {
-                console.log(data.error);
-            }
-            console.log(data);
-            localStorage.setItem('token', data.token);
-            route.push("/partner/busnessSignup", { scroll: false })
+          const loginRes = await axios.post('/api/signup', {
+            username: name,
+            company: company,
+            phone: phone,
+            email: email,
+            password: password
+          });
+          const data = loginRes.data;
+      
+          if (data.error) {
+            console.log(data.error); // You might want to handle this error more gracefully, like showing it to the user
+          }
+      console.log(data)
+          // Assuming the registration was successful, store user data in localStorage
+          localStorage.setItem('token', data.data.token);
+          localStorage.setItem('user', JSON.stringify(data));
+      
+          // Assuming route is a valid navigation function (like react-router's history object)
+          route.push("/partner/busnessSignup", { scroll: false });
+          console.log("hii")
         } catch (error) {
-            console.error('Error registering:', error);
+          console.error('Error registering:', error); // Log the error for debugging purposes
+          // You might want to provide feedback to the user about the registration failure
         } finally {
-            setLoading(false);
-            
+          setLoading(false); // Make sure to set loading state to false regardless of success or failure
         }
-    };
+      };
 
     return (
         
