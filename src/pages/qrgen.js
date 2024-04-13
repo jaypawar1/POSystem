@@ -8,10 +8,10 @@ function WhatsAppMessageSender() {
     const [qrCodeUrl, setQRCodeUrl] = useState('');
     const [user, setUser] = useState('');
 
-    useEffect(async() => {
+    useEffect(() => {
         const userFromLocalStorage = localStorage.getItem("user");
         if (userFromLocalStorage) {
-            const parsedUser =await JSON.parse(userFromLocalStorage);
+            const parsedUser =JSON.parse(userFromLocalStorage);
             setUser(parsedUser.data);
          
         }

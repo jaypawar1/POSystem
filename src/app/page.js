@@ -17,23 +17,8 @@ const App = () => {
       if (!token) {
         setIsLoggedIn(false);
       } else {
-        try {
-          const response = await fetch('/api/getUser', {
-            method: 'GET',
-            headers: { authorization: token }
-          });
-
-          if (response.ok) {
-            setIsLoggedIn(true);
-            localStorage.setItem('user', JSON.stringify(response));
-
-          } else {
-            setIsLoggedIn(false);
-          }
-        } catch (err) {
-          console.log("error", err);
-          setIsLoggedIn(false);
-        }
+        
+        setIsLoggedIn(true)
       }
     };
 

@@ -99,7 +99,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className="w-[30vw] h-full flex items-center">
-                            <LineChart />
+                        
                         </div>
                     </div>
                     <div className="min-h-[50vh] max-h-fit mx-2 w-[38vw] bg-white flex flex-col rounded shadow-lg">

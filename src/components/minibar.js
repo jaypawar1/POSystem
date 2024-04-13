@@ -3,6 +3,7 @@ import "../app/globals.css"
 import { FaHandshake } from "react-icons/fa"
 import { VscFeedback } from "react-icons/vsc"
 import { MdContacts } from "react-icons/md";
+import Link from "next/link";
 
 
 export const Minibar  = () => {
@@ -20,7 +21,7 @@ export const Minibar  = () => {
 
         <ul className="space-y-1 pt-4">
           <li>
-            <a
+            <Link
               href="/mainDash"
               className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -33,11 +34,11 @@ export const Minibar  = () => {
               >
                 Dashboard
               </span>
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="#"
               className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -48,11 +49,11 @@ export const Minibar  = () => {
               >
                Campaign
               </span>
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="#"
               className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -62,11 +63,11 @@ export const Minibar  = () => {
               >
                 Business
               </span>
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="#"
               className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -77,10 +78,10 @@ export const Minibar  = () => {
               >
                 Template
               </span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="/chat"
               className="group bg-green-500 relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -94,10 +95,10 @@ export const Minibar  = () => {
               >
                 Chats
               </span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="#"
               className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -112,10 +113,10 @@ export const Minibar  = () => {
               >
                 Orders
               </span>
-            </a>
+            </Link>
           </li> 
           <li>
-            <a
+            <Link
               href="/contacts"
               className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -126,10 +127,10 @@ export const Minibar  = () => {
               >
                 Contacts
               </span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="#"
               className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
@@ -140,7 +141,7 @@ export const Minibar  = () => {
               >
                 Feedback
               </span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
