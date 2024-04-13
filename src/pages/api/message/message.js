@@ -3,19 +3,8 @@ import { createHmac } from 'crypto';
 export default function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { notification } = req.body;
-      const receivedSignature = req.headers["x-aisensy-signature"];
-      const sharedSecret = "WEBHOOK_SHARED_SECRET"; // Replace with your actual shared secret
-      const generatedSignature =  createHmac("sha256", sharedSecret)
-                                    .update(JSON.stringify(notification))
-                                    .digest("hex");
-      // const data = JSON.stringify(res.body)
-      // console.log(data);
-      if (receivedSignature === generatedSignature) {
-        res.status(200).send("Signature Matched");
-      } else {
-        res.status(500).send("Signature didn't Match");
-      }
+      console.log(JSON.stringify(req.body));
+      res.status(500).send(JSON.stringify(req.body))
     } catch(err) {
       console.error(err);
       res.status(500).send("An error occurred while verifying the signature");
