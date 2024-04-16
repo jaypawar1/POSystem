@@ -4,7 +4,7 @@ export default function handler(req, res) {
     try {
       const authorizationHeader = req.headers['authorization'];
       console.log(JSON.stringify(req.body));
-      const entry = res.body;
+      const entry = res.body.entry;
       const senderName = entry.changes[0].value.contacts[0].profile.name;
       const senderNumber = entry.changes[0].value.contacts[0].wa_id;
       const message = entry.changes[0].value.messages[0].text.body;
