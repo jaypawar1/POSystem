@@ -1,5 +1,4 @@
 "use client"
-
 import { useEffect, useRef } from "react";
 import { Chart } from "chart.js/auto";
 
@@ -14,37 +13,44 @@ const Linechart = () => {
 
         const myChartRef = chartRef.current.getContext("2d");
 
+        
+
         chartInstance.current = new Chart(myChartRef, {
             type: 'line',
             data: {
-                labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+                labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 55, 60, 21, 56, 35, 80,22,34,56,43,83,43,86,23,12,32,75,32,43,37,97,33,23,53,55,76,18,96,54,34],
-                    fill: true, 
-                    backgroundColor: 'rgba(0, 153, 69,0.2)',
-                    borderColor: '#009945',
-                    tension: 0.1,
-                    pointRadius: 0, 
-                    pointBorderWidth: 0, 
+                  label: 'My First Dataset',
+                  data: [30, 25, 30, 45, 30, 45, 55, 82, 80],
+                  background: 'linear-gradient(180deg, rgba(0,153,69,1) 0%, rgba(0,153,69,0) 100%)',
+                  borderColor: '#009945',
+                  // Adjust tension for rounder peaks (value between 0 and 1)
+                  tension: 0.4, 
+                  pointRadius: 0,
+                  pointBorderWidth: 0,
                 }]
             },
             options: {
                 plugins: {
-                    legend: {
-                        display: false 
-                    }
+                  legend: {
+                    display: false
+                  }
                 },
                 scales: {
-                    x: {
-                        display: false 
-                    },
-                    y: {
-                        display: false 
-                    }
+                  x: {
+                    display: false
+                  },
+                  y: {
+                    display: false
+                  }
+                },
+                // Add background color configuration
+                backgroundColor: {
+                  // Set to 'rgba' with desired transparency (0 for fully opaque)
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)', // Example: white with 80% opacity
                 }
-            }
-        });
+              }
+            });
 
         return () => {
             if (chartInstance.current) {
@@ -54,8 +60,8 @@ const Linechart = () => {
     }, []);
 
     return (
-        <div className="w-[30vw] flex justify-center items-center">
-            <canvas ref={chartRef} style={{ width: "19vw", height: "60px" }} />
+        <div className="w-[100%] flex ">
+            <canvas ref={chartRef} className="w-[100%] " />
         </div>
     );
 };

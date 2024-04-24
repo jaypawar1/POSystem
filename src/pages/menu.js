@@ -3,19 +3,26 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { MdDelete } from "react-icons/md";
 import '../app/globals.css'
 import Veg from "../img/1200px-Indian-vegetarian-mark.svg.png"
 import NonVeg from "../img/245-2459071_non-veg-icon-non-veg-symbol-png.png"
 import Image from 'next/image';
-import { CiSearch } from "react-icons/ci";
-import { AiOutlineScan } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import Cryptr from 'cryptr';
 import { io } from "socket.io-client"
+import { IoLocationSharp } from "react-icons/io5"
+import { PiSlidersHorizontal } from "react-icons/pi";
+import 'animate.css';
+
 const socket = io();
 const Menu = () => {
+    useEffect(() => {
+    AOS.init();
+  }, [])
     const searchParams = useSearchParams()
     const cryptr = new Cryptr('mysecret');
     const search = searchParams.get('data')
@@ -94,54 +101,54 @@ const Menu = () => {
 
     return (
         <div className='bg-white min-h-screen'>
-            <nav className='flex h-[8vh] items-center justify-between'>
-                <h1 className='text-3xl text-center py-3 mx-3 font-extrabold'>Menu</h1>
-                <div className='m-3 flex gap-3 text-3xl font-semibold'>
-                    <button><CiSearch /></button>
-                    <button><AiOutlineScan /></button>
-                    <button><FaUserCircle /></button>
-                </div>
+            <nav className='flex h-[25vh] items-center gap-2 justify-center flex-col'>
+                <h1 className='text-4xl animate__animated animate__fadeIn text-center py-3 mx-3.5 font-bold'>Royal Food Mania</h1>
+               <p className='animate__animated animate__fadeIn'>Veg-Non Veg | All Indian Cuisine | 24 Hrs Open</p>
+               <div className='flex animate__animated animate__fadeIn gap-2 items-center mt-2'><p className='bg-green-500 flex gap-1  items-center text-white p-1 py-0.5 rounded-md'>4.3k <FaStar/></p><p className=' border-dashed border-b-2 pb-0.5 border-slate-500'>1K ratings</p></div>
+               <p className='flex animate__animated animate__fadeIn justify-center items-center gap-2 py-1 px-2 my-3  bg-slate-100 rounded-3xl'><IoLocationSharp/>3km | Pune Locality</p>
             </nav>
-            <nav className='menunav m-3 overflow-x-scroll my-4 flex items-center'>
+            <nav className='menunav m-3 overflow-x-scroll my-2 flex items-center'>
                 <ul className='flex text-nowrap gap-3 overflow-x-scroll'>
-                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
-                    active:text-zinc-950' href=".">Specials</a></li>
-                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    <li><a className='text-sm text-zinc-900 flex px-2 py-1 rounded-xl my-2 bg-slate-200 items-center hover:text-zinc-700
+                    active:text-zinc-950' href="."><PiSlidersHorizontal/> Filters</a></li>
+                    <li><a className='text-sm text-zinc-900 flex px-2 py-1 rounded-xl my-2 bg-slate-200 items-center hover:text-zinc-700
                     active:text-zinc-950' href=".">Food</a></li>
-                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    <li><a className='text-sm text-zinc-900 flex px-2 py-1 rounded-xl my-2 bg-slate-200 items-center hover:text-zinc-700
                     active:text-zinc-950' href=".">Beverages</a></li>
-                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    <li><a className='text-sm text-zinc-900 flex px-2 py-1 rounded-xl my-2 bg-slate-200 items-center hover:text-zinc-700
                     active:text-zinc-950' href=".">Desserts</a></li>
-                    <li><a className='text-xl text-zinc-500 hover:text-zinc-700
+                    <li><a className='text-sm text-zinc-900 flex px-2 py-1 rounded-xl my-2 bg-slate-200 items-center hover:text-zinc-700
                     active:text-zinc-950' href=".">Veg Specials</a></li>
                 </ul>
                 <div className='sticky right-0 bg-gradient-to-r from-slate-50/5 to-slate-100 text-2xl'><IoIosArrowForward className='bg-gradient-to-r from-slate-50/5 to-slate-100' /></div>
             </nav>
-            <div className="grid md:grid-cols-4 sm:grid-cols-4 grid-cols-2 gap-4 p-4 ">
+            <div className="grid md:grid-cols-4 sm:grid-cols-4 gap-4 p-4 ">
                 {dishes.map(dish => (
-                    <div key={dish.id} className="sm:w-[20vw] w-[45vw] rounded-3xl overflow-hidden justify-center items-center shadow-lg  m-auto sm:min-h-[15vh] sm:max-h-fit min-h-[15vh] ease-in max-h-fit flex flex-col bg-[#ebfffd]" onClick={() => handleDishClick(dish.id)}>
+                    <div key={dish.id} className={dish.veg?"sm:w-[80vw] w-[90vw] rounded-lg overflow-hidden items-center shadow-lg  m-auto sm:min-h-[15vh] sm:max-h-fit min-h-[15vh] ease-in max-h-fit flex bg-[#ebfffd] border-r-8 border-r-green-600":"sm:w-[80vw] w-[90vw] rounded-lg overflow-hidden items-center shadow-lg  m-auto sm:min-h-[15vh] sm:max-h-fit min-h-[15vh] ease-in max-h-fit flex bg-[#ebfffd] border-r-8 border-r-red-600"} data-aos='fade-up' onClick={() => handleDishClick(dish.id)}>
                         <img
-                            className="w-full h-40 rounded-n-xl  object-cover"
+                            className="w-32 h-28 object-cover ml-1.5 rounded-lg"
                             src={dish.img}
                             alt={`Image of ${dish.name}`}
                         />
-                        <div className="py-4 pb-2 flex-grow justify-start w-full">
+                        <div className='flex flex-col'>
+                        <div className="pt-2  flex-grow flex flex-col justify-start w-full">
                             <div className="font-bold sm:text-xl w-full flex flex-col justify-start text-base overflow-hidden text-gray-900 text-left">
-                                <div className="flex w-full justify-start items-center text-left">
-                                    <Image className='w-4 h-4 ml-3 mr-2' src={dish.veg ? Veg : NonVeg} alt={dish.veg ? "Vegetarian" : "Non-Vegetarian"} />
+                                <div className="flex mx-3 w-full text-xl justify-start items-center text-left">
+                                    
                                     {dish.name}
                                 </div>
                             </div>
                             {selectedDishId === dish.id && (
-                                <p className="border-gray-300 mx-2 text-base">
+                                <p className="border-gray-300 mx-3 text-xs">
                                     {dish.description}
                                 </p>
                             )}
                         </div>
-                        <div className="sm:px-6 px-2 w-full pb-4 flex justify-between items-center">
-                            <span className="inline-block font-extrabold rounded-full px-3 py-1 sm:text-xl text-base text-[#20413a]">₹{dish.price}</span>
-                            <button onClick={(e) => { e.stopPropagation(); addToCart(dish.id); }} className="bg-white text-[#b27154] font-semibold uppercase py-0.5 mr-3 px-3 rounded-lg border-[#b27154] border-[1px]">Add</button>
+                        <div className="sm:px-6 px-2 w-full pb-4 flex flex-col justify-between">
+                            <span className="inline-block text-semibold rounded-full ml-2 py-2 sm:text-xl text-sm">₹{dish.price}</span>
+                            <button onClick={(e) => { e.stopPropagation(); addToCart(dish.id); }} className="bg-white text-[#b27154] font-semibold uppercase py-0.5 mx-2 px-3 rounded-lg border-[#b27154] border-[1px]">Add</button>
                         </div>
+                    </div>
                     </div>
 
                 ))}
@@ -152,8 +159,8 @@ const Menu = () => {
                         <div className='flex gap-4 text-sm sm:text-base'>
                             <span className='font-semibold'>Total Price:<span className='text-lg'> ₹{getTotalPrice().toFixed(2)}</span></span>
                         </div>
-                        <div className='flex sm:gap-4 gap-2'><button onClick={toggleReviewPanel} className="bg-[#8a6240] hover:bg-[#4d2d18] text-white text-xs  sm:text-base font-bold h-12 w-28 px-0.5 rounded">
-                            Review Items
+                        <div className='flex sm:gap-4 gap-2'><button onClick={toggleReviewPanel} className="bg-[#8a6240] hover:bg-[#4d2d18] text-white text-xs  sm:text-base font-bold  px-2  rounded">
+                            Review
                         </button>
                             <button onClick={order} className="bg-[#8a6240] text-xs hover:bg-blue-700  sm:text-base text-white font-bold px-0.5 rounded h-12 w-28">
                                 Place order

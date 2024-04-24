@@ -7,7 +7,7 @@ import "../app/globals.css"
 export const Sidebar = ()=>{
  
   return (
-	<div className="h-screen w-[20vw] font-sans bg-zinc-900 text-gray-200 flex flex-col items-center p-3 fixed top-0 z-50 overflow-y-auto">
+	<div className="h-screen w-[20vw] font-sans bg-zinc-900 text-gray-200 flex overflow-x-hidden flex-col items-center p-3 sticky top-0 z-50 overflow-y-auto">
 	<div className="h-full p-3 pt-1 space-y-2 w-60 bg-zinc-900 z-10 text-gray-100">
 		<div className="flex items-center w-full">
 			<h2 className="text-4xl font-semibold"><span className="text-[#009945]">Restoo</span>AI</h2>
