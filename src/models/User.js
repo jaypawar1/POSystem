@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     role: { type: String, required: true },
     busnessPassword: { type: String },
     BusnessId: { type: String },
+    RestorentCode:{type:String},
     project_ids: [{
         projectId: { type: String },
         templates:[{
