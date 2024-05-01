@@ -2,7 +2,9 @@
 import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import "../app/globals.css"
 import * as Components from '../components/components';
+import { HiMiniIdentification } from 'react-icons/hi2';
 
 function LoginReg() {
     const [signIn, toggle] = useState(false);
@@ -15,16 +17,8 @@ function LoginReg() {
     const route= useRouter()
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
-            scheduleTokenRemoval();
-        }
     }, []);
 
-    const scheduleTokenRemoval = () => {
-        setTimeout(() => {
-            localStorage.removeItem('token');
-        }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
-    };
     const login = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -37,42 +31,46 @@ function LoginReg() {
             if (data.error) {
                 console.log(data.error);
             }
-            console.log(data);
-            localStorage.setItem('token', data.token);
-            scheduleTokenRemoval();
-            route.push("/posoft", { scroll: false })
+            localStorage.setItem('token', data.data.token);
+            localStorage.setItem('user', JSON.stringify(data));
+            await route.push("/Templates", { scroll: false })
+            setLoading(false);
         } catch (error) {
             console.error('Error logging in:', error);
-        } finally {
-            setLoading(false);
-        }
+        } 
     };
 
     const register = async (e) => {
         e.preventDefault();
         setLoading(true);
+      
         try {
-            const loginRes = await axios.post('/api/signup', {
-                username: name,
-                company: company,
-                phone: phone,
-                email: email,
-                password: password
-            });
-            const data = loginRes.data;
-            if (data.error) {
-                console.log(data.error);
-            }
-            console.log(data);
-            localStorage.setItem('token', data.token);
-            route.push("/posoft", { scroll: false })
+          const loginRes = await axios.post('/api/signup', {
+            username: name,
+            company: company,
+            phone: phone,
+            email: email,
+            password: password
+          });
+          const data = loginRes.data;
+          if (data.error) {
+            console.log(data.error); 
+          }
+      console.log(data)
+          // Assuming the registration was successful, store user data in localStorage
+          localStorage.setItem('token', data.data.token);
+          localStorage.setItem('user', JSON.stringify(data));
+      
+          // Assuming route is a valid navigation function (like react-router's history object)
+          route.push("/partner/busnessSignup", { scroll: false });
+          console.log("hii")
         } catch (error) {
-            console.error('Error registering:', error);
+          console.error('Error registering:', error); // Log the error for debugging purposes
+          // You might want to provide feedback to the user about the registration failure
         } finally {
-            setLoading(false);
-            
+          setLoading(false); // Make sure to set loading state to false regardless of success or failure
         }
-    };
+      };
 
     return (
         

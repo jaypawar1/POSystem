@@ -17,6 +17,7 @@ import { io } from "socket.io-client"
 import { IoLocationSharp } from "react-icons/io5"
 import { PiSlidersHorizontal } from "react-icons/pi";
 import 'animate.css';
+import Footer from '@/components/footer';
 
 const socket = io();
 const Menu = () => {
@@ -107,6 +108,15 @@ const Menu = () => {
                <div className='flex animate__animated animate__fadeIn gap-2 items-center mt-2'><p className='bg-green-500 flex gap-1  items-center text-white p-1 py-0.5 rounded-md'>4.3k <FaStar/></p><p className=' border-dashed border-b-2 pb-0.5 border-slate-500'>1K ratings</p></div>
                <p className='flex animate__animated animate__fadeIn justify-center items-center gap-2 py-1 px-2 my-3  bg-slate-100 rounded-3xl'><IoLocationSharp/>3km | Pune Locality</p>
             </nav>
+            <div className='w-screen h-[30vh]'>
+            <div className="relative w-full flex gap-4 py-6 overflow-x-auto">
+	<img className="h-48 aspect-video rounded-sm object-cover object-right dark:bg-gray-500" src="https://content.jdmagicbox.com/comp/patna/h4/0612px612.x612.150726163015.d1h4/catalogue/the-food-mania-rukunpura-patna-fast-food-yjqnv9lka1.jpg" alt="Image 1" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src="https://content.jdmagicbox.com/comp/patna/h4/0612px612.x612.150726163015.d1h4/catalogue/the-food-mania-rukunpura-patna-fast-food-pmus6rcrg0.jpg" alt="Image 2" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src="https://b.zmtcdn.com/data/pictures/8/18485988/29c0234f3d764fd1d56aaf666a3593f0.jpg" alt="Image 3" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src="https://b.zmtcdn.com/data/pictures/8/18485988/0999a28bfc6d64eec55acb91b935f93c.jpg" alt="Image 4" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src="https://b.zmtcdn.com/data/reviews_photos/b22/6f0d529d4e012c4e4a8f5cda1485bb22_1490806524.jpg?fit=around|750:500&crop=750:500;*,*" alt="Image 5" />
+</div>
+            </div>
             <nav className='menunav m-3 overflow-x-scroll my-2 flex items-center'>
                 <ul className='flex text-nowrap gap-3 overflow-x-scroll'>
                     <li><a className='text-sm text-zinc-900 flex px-2 py-1 rounded-xl my-2 bg-slate-200 items-center hover:text-zinc-700
@@ -155,14 +165,14 @@ const Menu = () => {
             </div>
             {cart.length > 0 && (
                 <div className='sticky bottom-5 w-screen flex justify-center'>
-                    <div className="sticky inset-x-0 shadow-xl w-[90%] mt-10 rounded-2xl bottom-10 bg-[#faf7f0] border-yellow-900 border  text-gray-900 py-4 px-6 flex justify-between items-center space-x-4 z-50">
+                    <div className="sticky inset-x-0 shadow-xl w-[95%] mt-10 rounded-2xl bottom-10 bg-[#faf7f0] border-yellow-900 border  text-gray-900 py-4 px-6 flex justify-between items-center space-x-4 z-50">
                         <div className='flex gap-4 text-sm sm:text-base'>
                             <span className='font-semibold'>Total Price:<span className='text-lg'> ₹{getTotalPrice().toFixed(2)}</span></span>
                         </div>
-                        <div className='flex sm:gap-4 gap-2'><button onClick={toggleReviewPanel} className="bg-[#8a6240] hover:bg-[#4d2d18] text-white text-xs  sm:text-base font-bold  px-2  rounded">
+                        <div className='flex sm:gap-4 gap-2'><button onClick={toggleReviewPanel} className="bg-[#8a6240] hover:bg-[#4d2d18] text-white text-xs  sm:text-base font-bold  px-2 py-1  rounded">
                             Review
                         </button>
-                            <button onClick={order} className="bg-[#8a6240] text-xs hover:bg-blue-700  sm:text-base text-white font-bold px-0.5 rounded h-12 w-28">
+                            <button onClick={order} className="bg-[#8a6240] text-xs hover:bg-blue-700  sm:text-base text-white font-bold px-2 py-1 rounded ">
                                 Place order
                             </button></div>
                     </div>
@@ -171,20 +181,22 @@ const Menu = () => {
 
             {showReview && (
                 <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md w-full animate__animated animate__fadeIn">
+                    <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md w-[90%] animate__animated animate__fadeIn">
                         <div className="px-6 py-8">
                             <h2 className="text-3xl font-bold mb-4 text-gray-900 text-center">Review Your Cart</h2>
                             <div className="divide-y divide-gray-200">
                                 {cart.map((item, index) => (
                                     <div key={index} className="flex justify-between my-3 items-center py-4">
                                         <div className="flex items-center">
-                                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-full object-cover mr-4" />
-                                            <div>
-                                                <p className="text-lg font-semibold text-gray-900">{item.name}</p>
-                                                <p className="text-gray-600">₹{item.price}</p>
+                                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-xl object-cover mr-2" />
+                                            <div className='flex'>
+                                               <div> <p className="text-base font-semibold text-gray-900">{item.name}</p>
+                                                <p className="text-gray-600 text-sm">₹{item.price}</p>
+                                                <p className="mx-3">Qty: {item.quantity}</p>
+                                                </div>
                                             </div>
-                                            <p className="mx-4">{item.quantity}</p>
-                                            <button onClick={() => increaseQuantity(item.id)} className="text-base font-semibold bg-blue-500 text-white px-2 py-1.5 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out">+</button>
+                                           
+                                            
                                         </div>
                                         <button onClick={() => removeFromCart(item.id)} className="text-red-600 hover:text-red-800 text-2xl dark:hover:text-red-400 font-semibold"><MdDelete /></button>
                                     </div>
@@ -194,8 +206,8 @@ const Menu = () => {
                         <div className="bg-gray-100 px-6 py-4 flex justify-between items-center">
                             <span className="text-xl font-semibold text-gray-900">Total: ₹{getTotalPrice().toFixed(2)}</span>
                             <div className="flex space-x-4">
-                                <button onClick={toggleReviewPanel} className="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out">Close</button>
-                                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out" onClick={sendMenuOrder(cart)}>Proceed to Checkout</button>
+                                <button onClick={toggleReviewPanel} className="bg-[#8a6240] hover:bg-red-600 text-white font-bold px-4 h-[4vh] rounded transition duration-300 ease-in-out">Close</button>
+                                <button className="bg-[#8a6240] hover:bg-red-600 text-white font-bold px-4 h-[4vh] rounded transition duration-300 ease-in-out" onClick={sendMenuOrder(cart)}>Checkout</button>
                             </div>
                         </div>
                     </div>
@@ -211,15 +223,15 @@ const Menu = () => {
                                 {cart.map((item, index) => (
                                     <div key={index} className="flex justify-between my-3 items-center py-4">
                                         <div className="flex items-center">
-                                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-full object-cover mr-4" />
+                                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-xl object-cover mr-4" />
                                             <div>
                                                 <p className="text-lg font-semibold text-gray-900">{item.name}</p>
                                                 <p className="text-gray-600">₹{item.price}</p>
                                             </div>
-                                            <p className="mx-4">{item.quantity}</p>
-                                            <button onClick={() => increaseQuantity(item.id)} className="text-base font-semibold bg-blue-500 text-white px-2 py-1.5 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out">+</button>
+                                            <p className="mx-4 text-lg">{item.quantity}</p>
+                                            
                                         </div>
-                                        <button onClick={() => removeFromCart(item.id)} className="text-red-600 hover:text-red-800 text-2xl dark:hover:text-red-400 font-semibold"><MdDelete /></button>
+                                        <button onClick={() => removeFromCart(item.id)} className=" text-2xl dark:hover:text-red-400 font-semibold"><MdDelete /></button>
                                     </div>
                                 ))}
                             </div>
@@ -227,14 +239,16 @@ const Menu = () => {
                         <div className="bg-gray-100 px-6 py-4 flex justify-between items-center">
                             <span className="text-xl font-semibold text-gray-900">Total: ₹{getTotalPrice().toFixed(2)}</span>
                             <div className="flex space-x-4">
-                                <button onClick={opener} className="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out">Close</button>
-                                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded transition duration-300 ease-in-out" onClick={sendMenuOrder(cart)}>Proceed to Checkout</button>
+                                <button onClick={opener} className="bg-[#8a6240] h-[65%] text-white font-bold px-4 py-1 text-sm rounded transition duration-300 ease-in-out">Close</button>
+                                <button className="bg-[#8a6240] hover:bg-blue-600 text-white h-[65%] font-bold px-4 py-1 rounded text-sm transition duration-300 ease-in-out" onClick={sendMenuOrder(cart)}>Checkout</button>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
+            <Footer/>
   </div>
+  
     );
 };
 

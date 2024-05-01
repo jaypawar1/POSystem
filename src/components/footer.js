@@ -12,8 +12,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8">
           
           <div className="flex items-center justify-center md:col-span-1 lg:col-span-2 flex-col">
-            <img src="https://www.edigitalagency.com.au/wp-content/uploads/netflix-logo-png-large.png" alt="Restaurant Logo" className=" h-20 w-auto" />
-            <p className='text-white font-bold'>Cafe</p>
+           <p className='text-3xl'>The Royal Food Mania</p>
+            
           </div>
 
           

@@ -13,7 +13,6 @@ const handler = async (req, res) => {
         try {
             const decoded = jwt.verify(token, "hello");
             const { userId } = decoded;
-            console.log(userId);
             const user = await User.findById(userId);
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });

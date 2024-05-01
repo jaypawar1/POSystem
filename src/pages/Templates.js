@@ -14,7 +14,7 @@ import { MdOutlineCheckCircleOutline } from "react-icons/md";
 import { BiErrorAlt } from "react-icons/bi";
 import TemplateForm from "./partner/createTemplate";
 import { IoMdCloseCircle } from "react-icons/io";
-
+import Link from "next/link";
 const Templates = () => {
   const [selectedTab, setSelectedTab] = useState(1);
   const [form,setForm] = useState(false)
@@ -28,6 +28,7 @@ const Templates = () => {
     <div className="flex flex-row">
       <Sidebar />
       <div className="w-[80vw] bg-gray-100/50">
+        <Link href="/qrgen">Create QR</Link>
         <header className="w-[80vw] h-[15vh]">
           <div className="flex w-[80vw] flex-row justify-between h-[12vh] items-center bg-white shadow-sm">
             <p className="text-2xl ml-6">Message Templates</p>
