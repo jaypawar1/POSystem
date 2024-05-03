@@ -5,6 +5,7 @@ import { Sidebar } from "@/components/sidebar";
 import "../app/globals.css";
 import { IoIosArrowDown } from "react-icons/io";
 import Linechart from "@/components/lineChart";
+import Image from "next/image";
 
 const Dashboard = () => {
     return (
