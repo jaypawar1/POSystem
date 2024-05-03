@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import QRCode from "qrcode";
+import Image from "next/image";
 
 function WhatsAppMessageSender() {
   const [restaurant, setRestaurant] = useState("");
@@ -45,7 +46,7 @@ function WhatsAppMessageSender() {
       <button onClick={generateQR}>Generate QR Code</button>
       <br />
       <br />
-      {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" />}
+      {qrCodeUrl && <Image src={qrCodeUrl} alt="QR Code" />}
     </div>
   );
 }

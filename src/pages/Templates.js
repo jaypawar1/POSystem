@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { IoAddOutline, IoMdCloseCircle } from "react-icons/io5";
+import { IoAddOutline } from "react-icons/io5";
+import { IoMdCloseCircle } from "react-icons/io";
 import { FaSearch, FaSync } from "react-icons/fa";
 import {
   MdOutlineExplore,

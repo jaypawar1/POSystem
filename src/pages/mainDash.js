@@ -14,7 +14,7 @@ const Dashboard = () => {
            <header className="w-full min-h-[10vh] shadow  text-black mb-10 flex gap-4 font-semibold items-center justify-end">
                     <p>Current Credits: 30400</p>
                     <p>Account Health: <span className="text-green-700 font-semibold">100%</span></p>
-                    <img src="https://i.pinimg.com/564x/0f/43/b2/0f43b2d9aa3d21c6597b3302c7719b49.jpg" className="w-10 h-10 rounded-full mx-3" alt="" />
+                    <Image src={"https://i.pinimg.com/564x/0f/43/b2/0f43b2d9aa3d21c6597b3302c7719b49.jpg"} className="w-10 h-10 rounded-full mx-3" alt="" />
                 </header>
             <div className="w-full  flex justify-center gap-3">
                 <div className="w-[95%]  flex justify-around gap-3">
@@ -123,7 +123,7 @@ const Dashboard = () => {
             </div>
             <div className="w-full h-[60vh]  flex justify-center items-center">
     <div className="flex flex-col bg-white w-[95%] border h-[90%] rounded">
-        <p className="text-xl m-3 font-medium border border-t-0 border-l-0 border-r-0 pb-3 border-b-2">Today's Highlights</p>
+        <p className="text-xl m-3 font-medium border border-t-0 border-l-0 border-r-0 pb-3 border-b-2">Today&apos;s Highlights</p>
        <div  className="w-full h-full flex">
         <div className=" h-full w-full grid grid-cols-2">
         <article className="flex flex-col gap-1 rounded-lg bg-white p-3 w-1/2">

@@ -8,6 +8,7 @@ import { MdOutlineSort } from "react-icons/md";
 import { MdFilterList } from "react-icons/md";
 import { FaEdit } from 'react-icons/fa';
 import { Sidebar } from '@/components/sidebar';
+import Image from 'next/image';
 
 const Chats = () => {
     const [activeTab, setActiveTab] = useState(1);
@@ -108,7 +109,7 @@ const Chats = () => {
                             </button>
                         </div>
                         <div className='w-full cursor-pointer my-2 h-14  items-center border-y flex'>
-                        <img className=' h-10 w-auto rounded-full m-2' src="https://i.pinimg.com/564x/f1/39/dc/f139dc89e5b1ad0818f612c7f33200a5.jpg" alt="" />
+                        <Image className=' h-10 w-auto rounded-full m-2' src={"https://i.pinimg.com/564x/f1/39/dc/f139dc89e5b1ad0818f612c7f33200a5.jpg"} alt="" />
                         <div className='flex w-[60%] flex-col'>
                             <p className='text-sm'>Demo User</p>
                             <p className='text-xs text-gray-600'>Hello</p>
@@ -137,7 +138,7 @@ const Chats = () => {
                     </div>
                     <div className='w-[17.5vw] h-full'>
                         <div className='flex w-full h-[20vh] justify-center items-center border-b'>
-                            <img className=' h-24 w-auto rounded-full' src="https://i.pinimg.com/564x/f1/39/dc/f139dc89e5b1ad0818f612c7f33200a5.jpg" alt="" />
+                            <Image className=' h-24 w-auto rounded-full' src={"https://i.pinimg.com/564x/f1/39/dc/f139dc89e5b1ad0818f612c7f33200a5.jpg"} alt="" />
                         </div>
                     </div>
                 </div>

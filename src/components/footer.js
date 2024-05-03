@@ -4,6 +4,7 @@ import { IoLogoFacebook } from "react-icons/io";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa6";
 import { CiMail } from "react-icons/ci";
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -64,7 +65,7 @@ const Footer = () => {
         <div className="mt-8 text-center">
           <p>&copy; 2024 Netflix Cafe. All rights reserved.</p>
           <div className="flex items-center flex-col gap-y-4 justify-center mt-4">
-            <img src="https://seeklogo.com/images/F/fssai-logo-C7400699BD-seeklogo.com.png" alt="FSSAI Logo" className="w-auto h-8 mr-2" />
+            <Image src={"https://seeklogo.com/images/F/fssai-logo-C7400699BD-seeklogo.com.png"} alt="FSSAI Logo" className="w-auto h-8 mr-2" />
             <p>License Number: XXXXXXXX</p>
           </div>
         </div>
