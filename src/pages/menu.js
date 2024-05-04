@@ -1,23 +1,19 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { MdDelete } from "react-icons/md";
 import '../app/globals.css'
-import Veg from "../img/1200px-Indian-vegetarian-mark.svg.png"
-import NonVeg from "../img/245-2459071_non-veg-icon-non-veg-symbol-png.png"
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import Cryptr from 'cryptr';
-import { io } from "socket.io-client"
+import { io } from "socket.io-client";
 import { IoLocationSharp } from "react-icons/io5"
 import { PiSlidersHorizontal } from "react-icons/pi";
 import 'animate.css';
 import Footer from '@/components/footer';
-import { Image } from 'next/image';
 
 const socket = io();
 const Menu = () => {
@@ -110,11 +106,11 @@ const Menu = () => {
             </nav>
             <div className='w-screen h-[30vh]'>
             <div className="relative w-full flex gap-4 py-6 overflow-x-auto">
-	<Image className="h-48 aspect-video rounded-sm object-cover object-right dark:bg-gray-500" src={"https://content.jdmagicbox.com/comp/patna/h4/0612px612.x612.150726163015.d1h4/catalogue/the-food-mania-rukunpura-patna-fast-food-yjqnv9lka1.jpg"} alt="Image 1" />
-	<Image className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://content.jdmagicbox.com/comp/patna/h4/0612px612.x612.150726163015.d1h4/catalogue/the-food-mania-rukunpura-patna-fast-food-pmus6rcrg0.jpg"} alt="Image 2" />
-	<Image className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://b.zmtcdn.com/data/pictures/8/18485988/29c0234f3d764fd1d56aaf666a3593f0.jpg"} alt="Image 3" />
-	<Image className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://b.zmtcdn.com/data/pictures/8/18485988/0999a28bfc6d64eec55acb91b935f93c.jpg"} alt="Image 4" />
-	<Image className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://b.zmtcdn.com/data/reviews_photos/b22/6f0d529d4e012c4e4a8f5cda1485bb22_1490806524.jpg?fit=around|750:500&crop=750:500;*,*"} alt="Image 5" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-right dark:bg-gray-500" src={"https://content.jdmagicbox.com/comp/patna/h4/0612px612.x612.150726163015.d1h4/catalogue/the-food-mania-rukunpura-patna-fast-food-yjqnv9lka1.jpg"} alt="Image 1" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://content.jdmagicbox.com/comp/patna/h4/0612px612.x612.150726163015.d1h4/catalogue/the-food-mania-rukunpura-patna-fast-food-pmus6rcrg0.jpg"} alt="Image 2" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://b.zmtcdn.com/data/pictures/8/18485988/29c0234f3d764fd1d56aaf666a3593f0.jpg"} alt="Image 3" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://b.zmtcdn.com/data/pictures/8/18485988/0999a28bfc6d64eec55acb91b935f93c.jpg"} alt="Image 4" />
+	<img className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500" src={"https://b.zmtcdn.com/data/reviews_photos/b22/6f0d529d4e012c4e4a8f5cda1485bb22_1490806524.jpg?fit=around|750:500&crop=750:500;*,*"} alt="Image 5" />
 </div>
             </div>
             <nav className='menunav m-3 overflow-x-scroll my-2 flex items-center'>
@@ -135,7 +131,7 @@ const Menu = () => {
             <div className="grid md:grid-cols-4 sm:grid-cols-4 gap-4 p-4 ">
                 {dishes.map(dish => (
                     <div key={dish.id} className={dish.veg?"sm:w-[80vw] w-[90vw] rounded-lg overflow-hidden items-center shadow-lg  m-auto sm:min-h-[15vh] sm:max-h-fit min-h-[15vh] ease-in max-h-fit flex bg-[#ebfffd] border-r-8 border-r-green-600":"sm:w-[80vw] w-[90vw] rounded-lg overflow-hidden items-center shadow-lg  m-auto sm:min-h-[15vh] sm:max-h-fit min-h-[15vh] ease-in max-h-fit flex bg-[#ebfffd] border-r-8 border-r-red-600"} data-aos='fade-up' onClick={() => handleDishClick(dish.id)}>
-                        <Image
+                        <img
                             className="w-32 h-28 object-cover ml-1.5 rounded-lg"
                             src={dish.img}
                             alt={`Image of ${dish.name}`}
@@ -188,7 +184,7 @@ const Menu = () => {
                                 {cart.map((item, index) => (
                                     <div key={index} className="flex justify-between my-3 items-center py-4">
                                         <div className="flex items-center">
-                                            <Image src={item.img} alt={item.name} className="h-16 w-16 rounded-xl object-cover mr-2" />
+                                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-xl object-cover mr-2" />
                                             <div className='flex'>
                                                <div> <p className="text-base font-semibold text-gray-900">{item.name}</p>
                                                 <p className="text-gray-600 text-sm">₹{item.price}</p>
@@ -223,7 +219,7 @@ const Menu = () => {
                                 {cart.map((item, index) => (
                                     <div key={index} className="flex justify-between my-3 items-center py-4">
                                         <div className="flex items-center">
-                                            <Image src={item.img} alt={item.name} className="h-16 w-16 rounded-xl object-cover mr-4" />
+                                            <img src={item.img} alt={item.name} className="h-16 w-16 rounded-xl object-cover mr-4" />
                                             <div>
                                                 <p className="text-lg font-semibold text-gray-900">{item.name}</p>
                                                 <p className="text-gray-600">₹{item.price}</p>
@@ -246,16 +242,11 @@ const Menu = () => {
                     </div>
                 </div>
             )}
+          
             <Footer/>
   </div>
   
     );
 };
 
-export default function Searchbar() {
-    return (
-        <Suspense>
-            <Menu />
-        </Suspense>
-    )
-}
+export default Menu

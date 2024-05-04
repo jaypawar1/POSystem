@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import Image from 'next/image';
+
 const MenuItems = ({ menu, onMenuItemSelect, addToOrder,isOpenMenu }) => {
   const [selectedCategory, setSelectedCategory] = useState('default');
   const [scrollPosition, setScrollPosition] = useState(0);
